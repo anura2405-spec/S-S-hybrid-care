@@ -1002,39 +1002,106 @@
         }
 
         @media print {
-            body * { visibility: hidden; }
-            #printModalContent, #printModalContent * { visibility: visible; }
+            @page {
+                size: A4 portrait;
+                margin: 10mm;
+            }
+            html, body {
+                background: #fff !important;
+                color: #0f172a !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                height: auto !important;
+                overflow: visible !important;
+            }
+            header,
+            .sidebar-menu,
+            #staffView,
+            #customerView,
+            #firebaseModal,
+            #resetModal,
+            .toast-banner,
+            .no-print {
+                display: none !important;
+            }
+            .container {
+                max-width: 100% !important;
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            #printModal {
+                position: static !important;
+                display: block !important;
+                inset: auto !important;
+                width: 100% !important;
+                height: auto !important;
+                min-height: 0 !important;
+                max-height: none !important;
+                overflow: visible !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                background: #fff !important;
+                box-shadow: none !important;
+            }
             #printModalContent {
-                position: fixed;
-                left: 0;
-                top: 0;
-                width: 100%;
-                max-width: 100%;
-                max-height: none;
-                overflow: visible;
-                box-shadow: none;
-                border-radius: 0;
-                padding: 0;
-                margin: 0;
-                background: #fff;
+                position: static !important;
+                display: block !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+                max-height: none !important;
+                overflow: visible !important;
+                box-shadow: none !important;
+                border: none !important;
+                border-radius: 0 !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                background: #fff !important;
+            }
+            #printableArea {
+                display: block !important;
+                width: 100% !important;
+                height: auto !important;
+                overflow: visible !important;
             }
             .a4-sheet {
-                border: none;
-                padding: 10mm 12mm;
-                width: 210mm;
-                min-height: 290mm;
+                width: 100% !important;
+                max-width: 100% !important;
+                min-height: 0 !important;
+                height: auto !important;
+                border: none !important;
+                border-radius: 0 !important;
+                padding: 4mm 6mm !important;
+                margin: 0 !important;
+                box-sizing: border-box !important;
+                overflow: visible !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+            .a4-header,
+            .a4-grid-2,
+            .a4-box,
+            .a4-table tr,
+            .a4-signatures {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
             }
             .barcode-roll-sheet {
-                background: #fff;
-                padding: 0;
-                gap: 0;
-                align-items: flex-start;
+                background: #fff !important;
+                padding: 0 !important;
+                gap: 0 !important;
+                align-items: flex-start !important;
+                overflow: visible !important;
             }
             .barcode-sticker-50x25 {
-                border: none;
-                margin: 0;
+                width: 50mm !important;
+                height: 25mm !important;
+                border: none !important;
+                margin: 0 !important;
             }
-            .no-print { display: none !important; }
         }
 
         .hidden { display: none !important; }
