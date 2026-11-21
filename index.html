@@ -243,6 +243,23 @@
         .stat-info h2 { font-size: 1.45rem; margin-top: 2px; }
         .stat-emoji { font-size: 1.65rem; opacity: 0.85; }
 
+        /* A4 Job Card Online Payment Bank Details Strip */
+        .a4-bank-strip {
+            background: #fffbeb;
+            border: 1px solid #f59e0b;
+            border-left: 4px solid #d97706;
+            border-radius: 7px;
+            padding: 6px 10px;
+            margin-bottom: 9px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px 12px;
+            font-size: 0.78rem;
+            color: #0f172a;
+        }
+
         /* Buttons */
         .btn {
             padding: 9px 14px;
@@ -3611,6 +3628,17 @@
         showToast(`🔗 Tracking Link Copy විය (${job.jobCode})`);
     }
 
+    function copyBankDetails() {
+        const text = `🏦 *${SHOP_NAME} - Online Payment Bank Details*\nBank: Bank of Ceylon (BOC)\nBranch: Keselwaththa Branch\nAccount No: 96291551\nAccount Name: W M S S Walisundara`;
+        const temp = document.createElement('textarea');
+        temp.value = text;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        temp.remove();
+        showToast('🏦 BOC Bank Details (96291551) Copy විය!');
+    }
+
     function sendWhatsAppLink(jobCodeOrId) {
         const job = findJobByCodeOrId(jobCodeOrId);
         if (!job) return;
@@ -4903,58 +4931,62 @@
                             </div>
                         </div>
 
+                        <div class="a4-bank-strip">
+                            <strong style="color:#92400e;">🏦 Online Payment:</strong>
+                            <span>Bank: <strong>Bank of Ceylon (BOC)</strong></span>
+                            <span>Branch: <strong>Keselwaththa Branch</strong></span>
+                            <span>Acc No: <strong>96291551</strong></span>
+                            <span>A/C Name: <strong>W M S S Walisundara</strong></span>
+                        </div>
+
                         <div class="a4-grid-2">
                             <div class="a4-box">
                                 <strong style="color:#0f766e;">Customer Details</strong>
                                 <div>Name: <strong>${escapeHtml(job.customerName)}</strong></div>
                                 <div>Phone: <strong>${escapeHtml(job.phone)}</strong></div>
-                                <div>Job Status: <strong>${escapeHtml(job.status)}</strong></div>
+                                <div>Status: <strong>${escapeHtml(job.status)}</strong></div>
                             </div>
                             <div class="a4-box">
                                 <strong style="color:#0f766e;">Vehicle Details</strong>
                                 <div>Vehicle No: <strong>${escapeHtml(job.vehicleNo)}</strong></div>
                                 <div>Brand / Model: <strong>${escapeHtml(job.vehicleBrand)} ${escapeHtml(job.vehicleModel || '')}</strong></div>
-                                <div>Warranty Valid Until: <strong>${escapeHtml(job.warrantyDate || 'N/A')}</strong></div>
+                                <div>Warranty Date: <strong>${escapeHtml(job.warrantyDate || 'N/A')}</strong></div>
                             </div>
                         </div>
 
                         <div class="a4-checklist-strip">
-                            <div class="a4-check-item"><span class="a4-check-box"></span>HV Battery Health</div>
-                            <div class="a4-check-item"><span class="a4-check-box"></span>Inverter &amp; Cooling</div>
-                            <div class="a4-check-item"><span class="a4-check-box"></span>ABS / Brake System</div>
-                            <div class="a4-check-item"><span class="a4-check-box"></span>OBD-II Scan &amp; Codes</div>
-                            <div class="a4-check-item"><span class="a4-check-box"></span>12V Aux Battery</div>
-                            <div class="a4-check-item"><span class="a4-check-box"></span>Engine Oil &amp; Fluids</div>
-                            <div class="a4-check-item"><span class="a4-check-box"></span>Exterior / Body Check</div>
-                            <div class="a4-check-item"><span class="a4-check-box"></span>Road Test Verified</div>
+                            <div class="a4-check-item"><span class="a4-check-box"></span> Hybrid Battery Check</div>
+                            <div class="a4-check-item"><span class="a4-check-box"></span> Inverter &amp; Cooling</div>
+                            <div class="a4-check-item"><span class="a4-check-box"></span> ABS / Brake System</div>
+                            <div class="a4-check-item"><span class="a4-check-box"></span> ECU / OBD-II Scan</div>
                         </div>
 
-                        <div class="a4-box" style="margin-bottom:9px; border-left:4px solid #dc2626;">
+                        <div class="a4-box" style="margin-bottom:8px; border-left:4px solid #dc2626; background:#fef2f2;">
                             <strong style="color:#b91c1c;">Reported Fault / Customer Complaint:</strong>
-                            <div style="margin-top:3px; white-space:pre-line; min-height:22px;">${escapeHtml(job.faultDesc)}</div>
+                            <div style="white-space:pre-line; margin-top:2px;">${escapeHtml(job.faultDesc || '-')}</div>
                         </div>
 
-                        <div class="a4-grid-2" style="margin-bottom:6px;">
-                            <div class="a4-box">
+                        <div class="a4-grid-2">
+                            <div class="a4-box" style="min-height:48px;">
                                 <strong style="color:#0f766e;">Intake Condition Notes:</strong>
-                                <div style="margin-top:3px; white-space:pre-line; min-height:30px;">${escapeHtml(job.intakeNote || 'Checked at reception')}</div>
+                                <div style="white-space:pre-line; margin-top:2px;">${escapeHtml(job.intakeNote || 'Checked & received in good condition.')}</div>
                             </div>
-                            <div class="a4-box">
+                            <div class="a4-box" style="min-height:48px;">
                                 <strong style="color:#0f766e;">Vehicle Inspection Report:</strong>
-                                <div style="margin-top:3px; white-space:pre-line; min-height:30px;">${escapeHtml(job.inspectionReport || 'Pending detailed inspection')}</div>
+                                <div style="white-space:pre-line; margin-top:2px;">${escapeHtml(job.inspectionReport || '-')}</div>
                             </div>
                         </div>
                     </div>
 
                     <div class="a4-middle-section">
-                        <strong style="display:block; margin-bottom:3px; color:#0f172a;">Allocated Spare Parts &amp; Labor Breakdown:</strong>
+                        <strong style="display:block; margin-bottom:3px; color:#0f172a; font-size:0.82rem;">Replaced Spare Parts &amp; Labor Breakdown:</strong>
                         <div class="a4-table-wrap">
                             <table class="a4-table">
                                 <thead>
                                     <tr>
-                                        <th style="width:6%;">#</th>
-                                        <th style="width:15%;">Code</th>
-                                        <th style="width:41%;">Part / Service Description</th>
+                                        <th style="width:5%;">#</th>
+                                        <th style="width:16%;">Code</th>
+                                        <th style="width:41%;">Spare Part / Service Description</th>
                                         <th style="width:8%;">Qty</th>
                                         <th style="width:15%;">Unit Price</th>
                                         <th style="width:15%;">Total</th>
@@ -4975,30 +5007,34 @@
                                 </tbody>
                             </table>
                         </div>
-
-                        <div class="a4-box" style="margin-bottom:8px;">
-                            <strong style="color:#0f766e;">Repair &amp; Service Work Summary / Technician Notes:</strong>
-                            <div style="margin-top:3px; white-space:pre-line; min-height:34px;">${escapeHtml(job.repairedItems || '-')}</div>
-                        </div>
-
-                        <div class="a4-box" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; font-size:0.9rem; background:#f0fdfa; border-color:#99f6e4;">
-                            <span>Labor Charge: <strong>${formatCurrency(laborVal)}</strong></span>
-                            <span>Parts Total: <strong>${formatCurrency(partsSum)}</strong></span>
-                            <span>Total Bill: <strong>${formatCurrency(job.totalAmount || 0)}</strong></span>
-                            <span>Advance Paid: <strong>${formatCurrency(job.advanceAmount || 0)}</strong></span>
-                            <span style="color:#0f766e;">Balance Due: <strong>${formatCurrency(balance)}</strong></span>
-                        </div>
+                        ${job.repairedItems ? `
+                            <div class="a4-box" style="margin-top:4px; padding:6px 9px; font-size:0.8rem;">
+                                <strong style="color:#0f766e;">Additional Service Notes:</strong>
+                                <span style="white-space:pre-line;"> ${escapeHtml(job.repairedItems)}</span>
+                            </div>
+                        ` : ''}
                     </div>
 
                     <div class="a4-bottom-section">
+                        <div class="a4-box" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; font-size:0.86rem; background:#f0fdfa; border-color:#99f6e4; margin-bottom:7px;">
+                            <span>Labor: <strong>${formatCurrency(laborVal)}</strong></span>
+                            <span>Parts: <strong>${formatCurrency(partsSum)}</strong></span>
+                            <span>Total Bill: <strong>${formatCurrency(job.totalAmount || 0)}</strong></span>
+                            <span>Advance: <strong>${formatCurrency(job.advanceAmount || 0)}</strong></span>
+                            <span style="color:#0f766e;">Balance Due: <strong>${formatCurrency(balance)}</strong></span>
+                        </div>
+
+                        <div style="font-size:0.78rem; color:#334155; margin-bottom:6px;">
+                            <strong>📲 Live Repair Status Tracking Link:</strong> <span style="color:#0284c7;">${escapeHtml(getCustomerTrackingLink(job))}</span>
+                        </div>
+
                         <div class="a4-terms-box">
-                            <div><strong>📲 Live Repair Status Tracking Link:</strong> ${escapeHtml(getCustomerTrackingLink(job))}</div>
-                            <div style="margin-top:3px;"><strong>Terms &amp; Warranty Conditions:</strong> Warranty applies only to specified hybrid parts and workmanship up to the warranty date above. Please collect your vehicle within 3 days of completion notification. ${SHOP_NAME} is not responsible for personal valuables left inside the vehicle.</div>
+                            <strong>Terms &amp; Warranty Conditions:</strong> Warranty applies only to specified hybrid parts and workmanship up to the warranty date above. Please collect your vehicle within 3 days of completion notification. ${SHOP_NAME} is not responsible for personal valuables left inside the vehicle.
                         </div>
 
                         <div class="a4-signatures">
                             <div class="sig-line">Customer Signature</div>
-                            <div class="sig-line">Authorized Technician / Officer (${SHOP_NAME})</div>
+                            <div class="sig-line">Authorized Workshop Signature (${SHOP_NAME})</div>
                         </div>
                     </div>
                 </div>
@@ -5013,8 +5049,8 @@
         setDynamicPrintPageSize('A4 portrait', '8mm');
 
         const items = Array.isArray(inv.items) ? inv.items : [];
-        const minInvRows = 9;
-        const fillerRowCount = Math.max(0, minInvRows - items.length);
+        const minInvoiceRows = 9;
+        const fillerRowCount = Math.max(0, minInvoiceRows - items.length);
         const fillerRowsHtml = Array.from({ length: fillerRowCount }).map(() =>
             `<tr class="a4-filler-row"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>`
         ).join('');
@@ -5033,7 +5069,8 @@
                             <div style="text-align:right;">
                                 <div class="a4-doc-badge">TAX / SERVICE INVOICE</div>
                                 <div style="margin-top:6px; font-weight:800; font-size:1.05rem;">${escapeHtml(inv.invNo)}</div>
-                                <div style="font-size:0.84rem;">Date: ${escapeHtml(inv.date)}${inv.jobRef ? ` • Job: ${escapeHtml(inv.jobRef)}` : ''}</div>
+                                <div style="font-size:0.84rem;">Date: ${escapeHtml(inv.date)}</div>
+                                ${inv.jobRef ? `<div style="font-size:0.8rem; color:#475569;">Job Ref: ${escapeHtml(inv.jobRef)}</div>` : ''}
                             </div>
                         </div>
 
