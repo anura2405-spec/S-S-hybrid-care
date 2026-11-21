@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S&amp;S hybrid care - Hybrid Vehicle Repair &amp; Live Tracking</title>
+    <title>S&amp;S hybrid care - Hybrid Vehicle Repair, Stock &amp; Live Tracking</title>
     <style>
         :root {
             --primary: #0d9488;
@@ -19,7 +19,6 @@
             --danger: #dc2626;
         }
 
-        /* Fixed universal CSS reset */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -42,7 +41,7 @@
         header {
             background: linear-gradient(135deg, #042f2e 0%, #0f766e 60%, #0284c7 100%);
             color: #fff;
-            padding: 20px 24px;
+            padding: 18px 22px;
             border-radius: 16px;
             margin-bottom: 18px;
             display: flex;
@@ -72,38 +71,38 @@
             flex-shrink: 0;
         }
 
-        header h1 { font-size: 1.55rem; letter-spacing: 0.3px; }
-        header p { font-size: 0.86rem; color: #ccfbf1; margin-top: 2px; }
+        header h1 { font-size: 1.5rem; letter-spacing: 0.3px; }
+        header p { font-size: 0.85rem; color: #ccfbf1; margin-top: 2px; }
 
         .sync-pill {
             background: rgba(255, 255, 255, 0.18);
             border: 1px solid rgba(255, 255, 255, 0.35);
-            padding: 6px 12px;
+            padding: 7px 13px;
             border-radius: 999px;
-            font-size: 0.78rem;
+            font-size: 0.79rem;
             font-weight: 700;
             display: inline-flex;
             align-items: center;
             gap: 6px;
             color: #fff;
             cursor: pointer;
+            transition: all 0.2s;
         }
 
+        .sync-pill:hover { transform: translateY(-1px); }
         .sync-pill.connecting {
-            background: rgba(2, 132, 199, 0.32);
-            border-color: rgba(125, 211, 252, 0.8);
+            background: rgba(2, 132, 199, 0.35);
+            border-color: rgba(125, 211, 252, 0.85);
             color: #e0f2fe;
         }
-
         .sync-pill.connected {
-            background: rgba(22, 163, 74, 0.28);
-            border-color: rgba(134, 239, 172, 0.75);
+            background: rgba(22, 163, 74, 0.32);
+            border-color: rgba(134, 239, 172, 0.85);
             color: #dcfce7;
         }
-
         .sync-pill.error {
-            background: rgba(220, 38, 38, 0.28);
-            border-color: rgba(252, 165, 165, 0.75);
+            background: rgba(220, 38, 38, 0.32);
+            border-color: rgba(252, 165, 165, 0.85);
             color: #fee2e2;
         }
 
@@ -123,9 +122,7 @@
         }
 
         @media (max-width: 960px) {
-            .app-shell {
-                grid-template-columns: 1fr;
-            }
+            .app-shell { grid-template-columns: 1fr; }
         }
 
         .sidebar-menu {
@@ -156,13 +153,8 @@
         }
 
         @media (max-width: 960px) {
-            .sidebar-menu {
-                position: static;
-            }
-            .nav-list {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
+            .sidebar-menu { position: static; }
+            .nav-list { flex-direction: row; flex-wrap: wrap; }
         }
 
         .nav-tab-btn {
@@ -173,7 +165,7 @@
             border-radius: 11px;
             background: transparent;
             color: #1e293b;
-            font-size: 0.87rem;
+            font-size: 0.86rem;
             font-weight: 700;
             cursor: pointer;
             display: flex;
@@ -184,10 +176,7 @@
         }
 
         @media (max-width: 960px) {
-            .nav-tab-btn {
-                width: auto;
-                flex: 1 1 auto;
-            }
+            .nav-tab-btn { width: auto; flex: 1 1 auto; }
         }
 
         .nav-tab-btn:hover {
@@ -251,8 +240,8 @@
         .stat-box.ready { border-bottom-color: var(--success); }
 
         .stat-info span { font-size: 0.8rem; color: var(--muted); font-weight: 600; }
-        .stat-info h2 { font-size: 1.5rem; margin-top: 2px; }
-        .stat-emoji { font-size: 1.7rem; opacity: 0.85; }
+        .stat-info h2 { font-size: 1.45rem; margin-top: 2px; }
+        .stat-emoji { font-size: 1.65rem; opacity: 0.85; }
 
         /* Buttons */
         .btn {
@@ -260,7 +249,7 @@
             border: none;
             border-radius: 9px;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.84rem;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
@@ -303,7 +292,7 @@
         }
 
         .card-title {
-            font-size: 1.08rem;
+            font-size: 1.06rem;
             font-weight: 700;
             padding-bottom: 11px;
             margin-bottom: 15px;
@@ -347,7 +336,7 @@
             box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.12);
         }
 
-        textarea { min-height: 60px; resize: vertical; }
+        textarea { min-height: 58px; resize: vertical; }
 
         .custom-brand-box {
             margin-top: 8px;
@@ -430,7 +419,7 @@
             border-radius: 12px;
             padding: 13px;
             margin-bottom: 13px;
-            transition: box-shadow 0.25s, transform 0.25s;
+            transition: box-shadow 0.25s;
         }
 
         .job-stock-box.highlight-pulse {
@@ -537,9 +526,7 @@
             color: #0f172a;
         }
 
-        .job-card-part-line:last-child {
-            border-bottom: none;
-        }
+        .job-card-part-line:last-child { border-bottom: none; }
 
         .media-preview {
             display: flex;
@@ -693,7 +680,7 @@
 
         .card-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: auto; }
 
-        /* Tables (Invoices, Quotations, Stock, History) */
+        /* Tables */
         .table-wrap {
             overflow-x: auto;
             border: 1px solid #e2e8f0;
@@ -720,9 +707,7 @@
             white-space: nowrap;
         }
 
-        table.data-table tr:hover td {
-            background: #f8fafc;
-        }
+        table.data-table tr:hover td { background: #f8fafc; }
 
         .line-items-box {
             background: #f8fafc;
@@ -741,9 +726,7 @@
         }
 
         @media (max-width: 640px) {
-            .line-item-row {
-                grid-template-columns: 1fr 1fr;
-            }
+            .line-item-row { grid-template-columns: 1fr 1fr; }
         }
 
         /* Barcode Box */
@@ -859,25 +842,58 @@
             border-radius: 16px;
             padding: 22px;
             width: 100%;
-            max-width: 860px;
+            max-width: 880px;
             box-shadow: 0 20px 35px rgba(0, 0, 0, 0.25);
             max-height: 92vh;
             overflow-y: auto;
         }
 
-        .modal-card.small-modal {
-            max-width: 480px;
-        }
+        .modal-card.small-modal { max-width: 560px; }
 
-        /* A4 Document Sheet */
+        /* A4 Document Sheet (Full-Page A4 Fit) */
         .a4-sheet {
             background: #ffffff;
             color: #0f172a;
             border: 1px solid #cbd5e1;
-            padding: 24px 28px;
+            padding: 18px 22px;
             border-radius: 8px;
             font-size: 0.88rem;
-            line-height: 1.45;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 280mm;
+            box-sizing: border-box;
+        }
+
+        .a4-sheet.a4-jobcard-sheet {
+            min-height: 280mm;
+            height: 280mm;
+            padding: 14px 18px;
+            font-size: 0.84rem;
+            line-height: 1.35;
+        }
+
+        .a4-top-section { width: 100%; }
+
+        .a4-middle-section {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            margin: 6px 0;
+        }
+
+        .a4-table-wrap {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .a4-bottom-section {
+            margin-top: auto;
+            padding-top: 6px;
+            width: 100%;
         }
 
         .a4-header {
@@ -885,8 +901,8 @@
             justify-content: space-between;
             align-items: flex-start;
             border-bottom: 3px solid #0f766e;
-            padding-bottom: 12px;
-            margin-bottom: 14px;
+            padding-bottom: 9px;
+            margin-bottom: 10px;
             gap: 12px;
         }
 
@@ -896,7 +912,7 @@
             padding: 6px 14px;
             border-radius: 6px;
             font-weight: 800;
-            font-size: 0.96rem;
+            font-size: 0.94rem;
             letter-spacing: 0.6px;
             text-transform: uppercase;
         }
@@ -904,27 +920,51 @@
         .a4-grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 14px;
+            gap: 10px;
+            margin-bottom: 9px;
         }
 
         .a4-box {
             border: 1px solid #cbd5e1;
             border-radius: 8px;
-            padding: 10px 12px;
+            padding: 8px 11px;
             background: #f8fafc;
+        }
+
+        .a4-checklist-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 7px 11px;
+            background: #ffffff;
+            margin-bottom: 9px;
+            font-size: 0.77rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .a4-check-item { display: flex; align-items: center; gap: 5px; }
+        .a4-check-box {
+            display: inline-block;
+            width: 11px;
+            height: 11px;
+            border: 1.5px solid #0f766e;
+            border-radius: 2px;
+            flex-shrink: 0;
         }
 
         .a4-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 12px 0;
+            margin: 5px 0 8px;
             font-size: 0.83rem;
         }
 
         .a4-table th, .a4-table td {
             border: 1px solid #cbd5e1;
-            padding: 7px 9px;
+            padding: 6px 8px;
             text-align: left;
             vertical-align: top;
         }
@@ -932,22 +972,39 @@
         .a4-table th {
             background: #f1f5f9;
             font-weight: 700;
+            color: #0f172a;
+        }
+
+        .a4-table tr.a4-filler-row td {
+            height: 23px;
+            color: transparent;
+            background: #ffffff;
+        }
+
+        .a4-terms-box {
+            border: 1px dashed #94a3b8;
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 7px 10px;
+            font-size: 0.76rem;
+            color: #334155;
+            margin-bottom: 8px;
         }
 
         .a4-signatures {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 34px;
-            padding-top: 12px;
+            gap: 36px;
+            margin-top: 20px;
+            padding-top: 6px;
         }
 
         .sig-line {
             border-top: 1px dashed #475569;
             padding-top: 5px;
             text-align: center;
-            font-size: 0.8rem;
-            font-weight: 600;
+            font-size: 0.81rem;
+            font-weight: 700;
         }
 
         /* 50mm x 25mm Thermal Roll Print Sheet */
@@ -997,22 +1054,25 @@
             font-weight: 600;
             box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
             z-index: 2000;
-            max-width: 380px;
+            max-width: 400px;
             border-left: 4px solid #14b8a6;
         }
 
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 10mm;
+                margin: 8mm;
             }
             html, body {
                 background: #fff !important;
                 color: #0f172a !important;
                 margin: 0 !important;
                 padding: 0 !important;
+                width: 100% !important;
                 height: auto !important;
                 overflow: visible !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
             header,
             .sidebar-menu,
@@ -1068,23 +1128,37 @@
             .a4-sheet {
                 width: 100% !important;
                 max-width: 100% !important;
-                min-height: 0 !important;
-                height: auto !important;
+                min-height: 280mm !important;
+                height: 280mm !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: space-between !important;
                 border: none !important;
                 border-radius: 0 !important;
-                padding: 4mm 6mm !important;
+                padding: 3mm 5mm !important;
                 margin: 0 !important;
                 box-sizing: border-box !important;
-                overflow: visible !important;
+                font-size: 9.8pt !important;
+                line-height: 1.38 !important;
+                overflow: hidden !important;
                 page-break-inside: avoid !important;
                 break-inside: avoid !important;
                 page-break-after: avoid !important;
                 break-after: avoid !important;
             }
+            .a4-sheet.a4-jobcard-sheet {
+                min-height: 280mm !important;
+                height: 280mm !important;
+                padding: 2.5mm 4.5mm !important;
+                font-size: 9.2pt !important;
+                line-height: 1.34 !important;
+            }
             .a4-header,
             .a4-grid-2,
+            .a4-checklist-strip,
             .a4-box,
             .a4-table tr,
+            .a4-bottom-section,
             .a4-signatures {
                 page-break-inside: avoid !important;
                 break-inside: avoid !important;
@@ -1119,7 +1193,7 @@
             </div>
         </div>
         <div class="top-actions">
-            <button type="button" class="sync-pill connecting" id="cloudStatusBadge" onclick="openFirebaseConfigModal()">🔄 Connecting / Reconnecting...</button>
+            <button type="button" class="sync-pill connecting" id="cloudStatusBadge" onclick="openFirebaseConfigModal()">🔄 Connecting Firebase...</button>
             <span id="staffTopActions" style="display:inline-flex; gap:8px; flex-wrap:wrap;">
                 <button type="button" class="btn btn-secondary btn-sm" onclick="testFirebaseReadWrite()">🔌 Test DB</button>
                 <button type="button" class="btn btn-light btn-sm" onclick="exportBackup()">📥 Backup Data</button>
@@ -1158,7 +1232,7 @@
                         <span class="nav-count-badge" id="badgeStockCount">0</span>
                     </button>
                     <button type="button" class="nav-tab-btn" id="nav-history" onclick="switchTab('history')">
-                        <span>📋 Vehicle History</span>
+                        <span>📜 Vehicle History</span>
                         <span class="nav-count-badge" id="badgeVehiclesCount">0</span>
                     </button>
                     <button type="button" class="nav-tab-btn" id="nav-profit" onclick="switchTab('profit')">
@@ -1168,10 +1242,10 @@
                 </div>
 
                 <div class="sidebar-footer-note">
-                    <strong>🖨️ Print Formats:</strong><br>
-                    • Job Card, Invoice, Quotation &amp; Vehicle History → <strong>A4 Sheet</strong><br>
-                    • Stock Barcode Labels → <strong>50mm × 25mm Roll</strong><br>
-                    • Customer Tracking Link → <strong>Job Card එකෙන්ම</strong>
+                    <strong>☁️ Dual-Mode Sync:</strong><br>
+                    • Realtime SDK + REST API Auto-Fallback<br>
+                    • A4 Full-Page Print &amp; 50×25mm Roll<br>
+                    • Live Customer Link (<code>?job=SSH-...</code>)
                 </div>
             </aside>
 
@@ -1219,7 +1293,6 @@
                                     <button type="button" class="btn btn-light btn-sm hidden" id="cancelEditBtn" onclick="resetJobForm(true)">Cancel / New Job</button>
                                 </div>
 
-                                <!-- Opened Job Status Banner -->
                                 <div class="opened-job-banner new-draft" id="openedJobBanner">
                                     <div>
                                         <div id="openedJobTitle" style="font-weight:800; font-size:0.94rem;">🆕 New Job Draft</div>
@@ -1231,12 +1304,10 @@
                                     </div>
                                 </div>
 
-                                <!-- Repeat Vehicle Notice (when Vehicle No already has past Job Cards) -->
                                 <div class="repeat-vehicle-notice hidden" id="repeatVehicleNotice"></div>
 
-                                <!-- Explicit Selector to Open Any Existing Saved Job Card by Job Code -->
                                 <div class="form-group" style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:9px 11px;">
-                                    <label for="quickOpenJobSelect" style="color:#0f766e; margin-bottom:4px;">📂 Open Existing Saved Job Card by Job Code (විවෘත Job Card එකක් තෝරන්න)</label>
+                                    <label for="quickOpenJobSelect" style="color:#0f766e; margin-bottom:4px;">📂 Open Existing Saved Job Card by Job Code</label>
                                     <select id="quickOpenJobSelect" onchange="handleQuickOpenJobChange(this.value)">
                                         <option value="">-- New Job Draft (අලුත් Job එකක්) --</option>
                                     </select>
@@ -1350,7 +1421,7 @@
                                             </select>
                                             <input type="number" id="jobStockQty" min="1" value="1" title="Quantity" placeholder="Qty" oninput="updateSelectedStockPreview()">
                                             <input type="number" id="jobStockPrice" min="0" step="0.01" value="0" title="Unit Price (Rs.)" placeholder="Price" oninput="updateSelectedStockPreview()">
-                                            <button type="button" id="addPartToJobBtn" class="btn btn-secondary btn-sm" onclick="addPartToCurrentJob()">➕ Add Part to Job</button>
+                                            <button type="button" id="addPartToJobBtn" class="btn btn-secondary btn-sm" onclick="addPartToCurrentJob()">➕ Add Part</button>
                                         </div>
                                         <div class="stock-part-preview-strip" id="selectedStockPreviewStrip">
                                             <span>Unit Price: <strong>Rs. 0</strong></span>
@@ -1634,7 +1705,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Terms / Estimate Notes</label>
-                                    <textarea id="quoNotes" placeholder="Parts availability & warranty terms..."></textarea>
+                                    <textarea id="quoNotes" placeholder="Parts availability &amp; warranty terms..."></textarea>
                                 </div>
 
                                 <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:10px; padding:10px 12px; margin-bottom:12px; font-size:0.95rem; display:flex; justify-content:space-between;">
@@ -1825,7 +1896,7 @@
                 <section id="tab-history" class="hidden">
                     <div class="card">
                         <div class="card-title">
-                            <span>📋 Vehicle Full Service &amp; Repair History Report</span>
+                            <span>📜 Vehicle Full Service &amp; Repair History Report</span>
                             <button type="button" class="btn btn-dark btn-sm hidden" id="printVehicleHistoryBtn" onclick="openA4VehicleHistoryReport()">🖨️ Print Full Vehicle History (A4)</button>
                         </div>
 
@@ -1898,6 +1969,7 @@
         <div class="card">
             <div class="card-title">
                 <span>🔍 Vehicle Repair Status Lookup</span>
+                <button type="button" class="btn btn-light btn-sm" onclick="refreshCustomerFromCloud()">🔄 Refresh Live Status</button>
             </div>
             <div class="lookup-bar">
                 <input type="text" id="customerLookupInput" placeholder="Job ID (SSH-1001) හෝ Vehicle No (WP CAX-1234) ඇතුළත් කරන්න...">
@@ -1959,9 +2031,9 @@
 <!-- FIREBASE CONFIG & DIAGNOSTICS MODAL -->
 <div class="modal-backdrop hidden" id="firebaseModal">
     <div class="modal-card small-modal">
-        <h3 style="color:#0f766e; margin-bottom:8px;">☁️ Firebase Realtime Database Config &amp; Diagnostics</h3>
+        <h3 style="color:#0f766e; margin-bottom:8px;">☁️ Firebase Realtime Database Config &amp; Dual-Mode Sync</h3>
         <p style="font-size:0.82rem; color:#475569; margin-bottom:12px;">
-            Realtime DB URL සහ Project ID සකසා Connection / Rules Read-Write test කරන්න. Local save කිසිවිටෙකත් අවහිර නොවේ.
+            WebSocket SDK + Automatic REST API Fallback සක්‍රීයයි. Database URL සහ Project ID සකසා Connection / Rules Read-Write test කරන්න.
         </p>
         <div class="form-group">
             <label>Database URL *</label>
@@ -1971,8 +2043,20 @@
             <label>Project ID *</label>
             <input type="text" id="fbConfigProjectId" placeholder="privet-chat-1b7ed">
         </div>
-        <div id="fbDiagResult" style="font-size:0.79rem; background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:10px; margin-bottom:12px; color:#0f172a; line-height:1.5; white-space:pre-line;">
+        <div id="fbDiagResult" style="font-size:0.79rem; background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:10px; margin-bottom:10px; color:#0f172a; line-height:1.5; white-space:pre-line;">
             Loading diagnostics...
+        </div>
+        <div style="background:#fffbeb; border:1px solid #fcd34d; border-radius:8px; padding:9px 10px; margin-bottom:12px; font-size:0.76rem; color:#78350f;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <strong>🔑 Recommended Firebase Realtime Database Rules:</strong>
+                <button type="button" class="btn btn-light btn-sm" style="padding:2px 8px; font-size:0.72rem;" onclick="copyFirebaseRulesSnippet()">📋 Copy Rules</button>
+            </div>
+            <pre id="fbRulesSnippet" style="background:#0f172a; color:#5eead4; padding:7px 9px; border-radius:6px; overflow-x:auto; font-size:0.72rem;">{
+  "rules": {
+    ".read": true,
+    ".write": true
+  }
+}</pre>
         </div>
         <div style="display:flex; gap:8px; flex-wrap:wrap;">
             <button type="button" class="btn btn-primary" onclick="saveFirebaseConfigModal()">💾 Save &amp; Reconnect</button>
@@ -2010,9 +2094,6 @@
     </div>
 </div>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js" onerror="window.__fbSdkLoadFailed = true;"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js" onerror="window.__fbSdkLoadFailed = true;"></script>
-
 <script>
     const SHOP_NAME = 'S&S hybrid care';
     const SHOP_TEL = '077 000 0000';
@@ -2021,6 +2102,7 @@
     const INVOICE_STORAGE_KEY = 'ss_hybrid_care_invoices_v1';
     const QUOTATION_STORAGE_KEY = 'ss_hybrid_care_quotations_v1';
     const FB_CONFIG_STORAGE_KEY = 'ss_hybrid_care_fb_config_v1';
+    const FB_URL_STORAGE_KEY = 'ss_hybrid_care_fb_url';
 
     const DEFAULT_FIREBASE_CONFIG = {
         databaseURL: 'https://privet-chat-1b7ed-default-rtdb.asia-southeast1.firebasedatabase.app',
@@ -2036,27 +2118,13 @@
         }
     }
 
-    function getEl(id) {
-        return document.getElementById(id);
-    }
-
-    function getVal(id, fallback = '') {
-        const el = getEl(id);
-        return el ? el.value : fallback;
-    }
-
-    function setVal(id, val) {
-        const el = getEl(id);
-        if (el) el.value = val;
-    }
+    function getEl(id) { return document.getElementById(id); }
+    function getVal(id, fallback = '') { const el = getEl(id); return el ? el.value : fallback; }
+    function setVal(id, val) { const el = getEl(id); if (el) el.value = val; }
 
     function escapeHtml(str) {
         return String(str ?? '').replace(/[&<>"']/g, m => ({
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#39;'
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
         }[m]));
     }
 
@@ -2112,18 +2180,569 @@
     let tempJobUsedParts = [];
     let activeHistoryVehicleNormalized = '';
 
+    // =========================================================================
+    // DUAL-MODE FIREBASE REALTIME DATABASE ENGINE (SDK + REST API FALLBACK)
+    // =========================================================================
     let db = null;
     let connectedRef = null;
     let dbRef = null;
     let stockDbRef = null;
     let invoicesDbRef = null;
     let quotationsDbRef = null;
-    let isFirebaseConnected = false;
+
+    let isSdkConnected = false;
+    let isRestConnected = false;
+    let activeSyncMode = 'CONNECTING'; // 'SDK' | 'REST' | 'PERMISSION_DENIED' | 'OFFLINE' | 'CONNECTING'
+    let sdkLoadStatus = 'Loading Firebase v8 SDK...';
     let lastFirebaseError = '';
+    let restPollTimer = null;
+    let sdkTimeoutTimer = null;
+
     let lastLocalJobsWriteAt = 0;
     let lastLocalStockWriteAt = 0;
     let lastLocalInvoicesWriteAt = 0;
     let lastLocalQuotationsWriteAt = 0;
+
+    function loadFirebaseConfig() {
+        const savedObj = safeJsonParse(localStorage.getItem(FB_CONFIG_STORAGE_KEY), null);
+        const savedUrl = localStorage.getItem(FB_URL_STORAGE_KEY);
+        const rawUrl = (savedObj && savedObj.databaseURL) || savedUrl || DEFAULT_FIREBASE_CONFIG.databaseURL;
+        const rawProj = (savedObj && savedObj.projectId) || DEFAULT_FIREBASE_CONFIG.projectId;
+        return {
+            databaseURL: String(rawUrl).trim().replace(/\/+$/, ''),
+            projectId: String(rawProj).trim() || DEFAULT_FIREBASE_CONFIG.projectId
+        };
+    }
+
+    let FIREBASE_CONFIG = loadFirebaseConfig();
+
+    function setCloudBadge(text, stateClass = '') {
+        const badge = getEl('cloudStatusBadge');
+        if (!badge) return;
+        badge.textContent = text;
+        badge.className = 'sync-pill' + (stateClass ? ' ' + stateClass : '');
+    }
+
+    function updateSyncStatusBadge() {
+        if (isSdkConnected) {
+            activeSyncMode = 'SDK';
+            setCloudBadge('🟢 Firebase SDK Live Connected', 'connected');
+        } else if (isRestConnected) {
+            activeSyncMode = 'REST';
+            setCloudBadge('🟢 Firebase REST Sync Connected', 'connected');
+        } else if (activeSyncMode === 'PERMISSION_DENIED') {
+            setCloudBadge('🔴 Permission Denied (Check Rules)', 'error');
+        } else if (activeSyncMode === 'OFFLINE') {
+            setCloudBadge('🟠 Offline / Local Mode', 'error');
+        } else {
+            setCloudBadge('🔄 Connecting Firebase...', 'connecting');
+        }
+        updateDiagnosticsModalText();
+    }
+
+    function getFirebaseDiagnosticsText(extraNote = '') {
+        const online = typeof navigator !== 'undefined' ? navigator.onLine : true;
+        return [
+            `Database URL: ${FIREBASE_CONFIG.databaseURL || '(none)'}`,
+            `Project ID: ${FIREBASE_CONFIG.projectId || '(none)'}`,
+            `Active Sync Mode: ${activeSyncMode}`,
+            `SDK Status: ${sdkLoadStatus} (Connected: ${isSdkConnected ? 'YES' : 'NO'})`,
+            `REST API Fallback: ${isRestConnected ? 'ACTIVE & CONNECTED' : 'Standby / Checking'}`,
+            `Browser Online: ${online ? 'YES' : 'NO'}`,
+            `Last Error: ${lastFirebaseError || 'None'}`,
+            extraNote ? `Detail: ${extraNote}` : ''
+        ].filter(Boolean).join('\n');
+    }
+
+    function updateDiagnosticsModalText(extraNote = '') {
+        const el = getEl('fbDiagResult');
+        if (el) el.textContent = getFirebaseDiagnosticsText(extraNote);
+    }
+
+    function isPermissionOrAuthError(errOrStatus) {
+        if (errOrStatus === 401 || errOrStatus === 403) return true;
+        const s = String(errOrStatus?.code || errOrStatus?.message || errOrStatus || '').toLowerCase();
+        return s.includes('permission_denied') || s.includes('permission denied') || s.includes('unauthorized') || s.includes('401') || s.includes('403');
+    }
+
+    function arrToKeyedMap(arr) {
+        const mapObj = {};
+        (arr || []).forEach(item => {
+            if (!item) return;
+            const key = item.jobCode ? String(item.jobCode).trim().toUpperCase() : String(item.id);
+            if (key) mapObj[key] = item;
+        });
+        return mapObj;
+    }
+
+    function mergeRemoteJobsSnapshot(val) {
+        if (Date.now() - lastLocalJobsWriteAt < 4000) return;
+        if (val && typeof val === 'object') {
+            const rawList = Array.isArray(val) ? val.filter(Boolean) : Object.values(val);
+            const deduped = [];
+            const seenCodes = new Set();
+            rawList.forEach(item => {
+                if (!item) return;
+                const codeKey = String(item.jobCode || item.id || '').trim().toUpperCase();
+                if (!codeKey || seenCodes.has(codeKey)) return;
+                seenCodes.add(codeKey);
+                deduped.push(item);
+            });
+            deduped.sort((a, b) => (Number(b.id) || 0) - (Number(a.id) || 0));
+            jobs = deduped;
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(jobs));
+            refreshAllUI();
+        } else if (val === null && jobs.length > 0 && (isSdkConnected || isRestConnected)) {
+            syncAllCollectionsNow();
+        }
+    }
+
+    function mergeRemoteStockSnapshot(val) {
+        if (Date.now() - lastLocalStockWriteAt < 4000) return;
+        if (val && typeof val === 'object') {
+            const list = Array.isArray(val) ? val.filter(Boolean) : Object.values(val);
+            list.sort((a, b) => (Number(b.id) || 0) - (Number(a.id) || 0));
+            stockItems = list.map(normalizeStockItem);
+            localStorage.setItem(STOCK_STORAGE_KEY, JSON.stringify(stockItems));
+            refreshAllUI();
+        } else if (val === null && stockItems.length > 0 && (isSdkConnected || isRestConnected)) {
+            syncCollectionToFirebase('ss_hybrid_care_stock', stockDbRef, stockItems);
+        }
+    }
+
+    function mergeRemoteInvoicesSnapshot(val) {
+        if (Date.now() - lastLocalInvoicesWriteAt < 4000) return;
+        if (val && typeof val === 'object') {
+            const list = Array.isArray(val) ? val.filter(Boolean) : Object.values(val);
+            list.sort((a, b) => (Number(b.id) || 0) - (Number(a.id) || 0));
+            invoices = list;
+            localStorage.setItem(INVOICE_STORAGE_KEY, JSON.stringify(invoices));
+            refreshAllUI();
+        } else if (val === null && invoices.length > 0 && (isSdkConnected || isRestConnected)) {
+            syncCollectionToFirebase('ss_hybrid_care_invoices', invoicesDbRef, invoices);
+        }
+    }
+
+    function mergeRemoteQuotationsSnapshot(val) {
+        if (Date.now() - lastLocalQuotationsWriteAt < 4000) return;
+        if (val && typeof val === 'object') {
+            const list = Array.isArray(val) ? val.filter(Boolean) : Object.values(val);
+            list.sort((a, b) => (Number(b.id) || 0) - (Number(a.id) || 0));
+            quotations = list;
+            localStorage.setItem(QUOTATION_STORAGE_KEY, JSON.stringify(quotations));
+            refreshAllUI();
+        } else if (val === null && quotations.length > 0 && (isSdkConnected || isRestConnected)) {
+            syncCollectionToFirebase('ss_hybrid_care_quotations', quotationsDbRef, quotations);
+        }
+    }
+
+    // REST API Helper Functions (works over standard HTTPS fetch even when WebSockets/SDK fail)
+    async function restPutNode(path, dataObj) {
+        const base = FIREBASE_CONFIG.databaseURL;
+        if (!base) throw new Error('Missing Firebase databaseURL');
+        const url = `${base}/${path}.json`;
+        const res = await fetch(url, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dataObj)
+        });
+        if (!res.ok) {
+            const errText = await res.text().catch(() => '');
+            const err = new Error(`HTTP ${res.status}${errText ? ': ' + errText : ''}`);
+            err.status = res.status;
+            throw err;
+        }
+        isRestConnected = true;
+        lastFirebaseError = '';
+        updateSyncStatusBadge();
+        return res.json();
+    }
+
+    async function restDeleteNode(path) {
+        const base = FIREBASE_CONFIG.databaseURL;
+        if (!base) return;
+        const url = `${base}/${path}.json`;
+        const res = await fetch(url, { method: 'DELETE' });
+        if (!res.ok) {
+            const err = new Error(`HTTP ${res.status}`);
+            err.status = res.status;
+            throw err;
+        }
+    }
+
+    async function restGetNode(path) {
+        const base = FIREBASE_CONFIG.databaseURL;
+        if (!base) throw new Error('Missing Firebase databaseURL');
+        const url = `${base}/${path}.json`;
+        const res = await fetch(url, { method: 'GET', cache: 'no-store' });
+        if (!res.ok) {
+            const errText = await res.text().catch(() => '');
+            const err = new Error(`HTTP ${res.status}${errText ? ': ' + errText : ''}`);
+            err.status = res.status;
+            throw err;
+        }
+        isRestConnected = true;
+        lastFirebaseError = '';
+        updateSyncStatusBadge();
+        return res.json();
+    }
+
+    async function pullAllViaRest(silent = true) {
+        try {
+            const [remoteJobs, remoteStock, remoteInvoices, remoteQuotations] = await Promise.all([
+                restGetNode('ss_hybrid_care_jobs'),
+                restGetNode('ss_hybrid_care_stock'),
+                restGetNode('ss_hybrid_care_invoices'),
+                restGetNode('ss_hybrid_care_quotations')
+            ]);
+            isRestConnected = true;
+            lastFirebaseError = '';
+            updateSyncStatusBadge();
+
+            mergeRemoteJobsSnapshot(remoteJobs);
+            mergeRemoteStockSnapshot(remoteStock);
+            mergeRemoteInvoicesSnapshot(remoteInvoices);
+            mergeRemoteQuotationsSnapshot(remoteQuotations);
+
+            const params = new URLSearchParams(window.location.search);
+            const jobParam = params.get('job');
+            if (jobParam) {
+                const currentInput = getVal('customerLookupInput', '').trim() || jobParam;
+                renderCustomerTrackingJob(currentInput, jobParam);
+            }
+            if (!silent) showToast('✅ Firebase REST Sync සාර්ථකව යාවත්කාලීන විය!');
+            return true;
+        } catch (err) {
+            isRestConnected = false;
+            lastFirebaseError = err?.message || 'REST GET failed';
+            if (isPermissionOrAuthError(err?.status || err)) {
+                activeSyncMode = 'PERMISSION_DENIED';
+            } else if (!isSdkConnected) {
+                activeSyncMode = 'OFFLINE';
+            }
+            updateSyncStatusBadge();
+            return false;
+        }
+    }
+
+    function startRestPollingLoop() {
+        if (restPollTimer) clearInterval(restPollTimer);
+        pullAllViaRest(true);
+        restPollTimer = setInterval(() => {
+            if (!isSdkConnected) {
+                pullAllViaRest(true);
+            }
+        }, 10000);
+    }
+
+    function syncCollectionToFirebase(nodeName, sdkRef, arr) {
+        const mapObj = arrToKeyedMap(arr);
+        if (sdkRef && isSdkConnected) {
+            sdkRef.set(mapObj).catch(err => {
+                if (isPermissionOrAuthError(err)) {
+                    activeSyncMode = 'PERMISSION_DENIED';
+                    lastFirebaseError = err.message || 'Permission denied';
+                    updateSyncStatusBadge();
+                } else {
+                    restPutNode(nodeName, mapObj).catch(() => {});
+                }
+            });
+        } else {
+            restPutNode(nodeName, mapObj).catch(err => {
+                lastFirebaseError = err?.message || 'REST write failed';
+                if (isPermissionOrAuthError(err?.status || err)) {
+                    activeSyncMode = 'PERMISSION_DENIED';
+                } else if (!isSdkConnected) {
+                    activeSyncMode = 'OFFLINE';
+                }
+                updateSyncStatusBadge();
+            });
+        }
+    }
+
+    function syncSingleItemToFirebase(nodeName, sdkRef, key, itemObj) {
+        if (!key) return;
+        if (sdkRef && isSdkConnected) {
+            sdkRef.child(key).set(itemObj).catch(() => {
+                restPutNode(`${nodeName}/${encodeURIComponent(key)}`, itemObj).catch(() => {});
+            });
+        } else {
+            restPutNode(`${nodeName}/${encodeURIComponent(key)}`, itemObj).catch(() => {});
+        }
+    }
+
+    function deleteSingleItemFromFirebase(nodeName, sdkRef, key) {
+        if (!key) return;
+        if (sdkRef && isSdkConnected) {
+            sdkRef.child(key).remove().catch(() => {
+                restDeleteNode(`${nodeName}/${encodeURIComponent(key)}`).catch(() => {});
+            });
+        } else {
+            restDeleteNode(`${nodeName}/${encodeURIComponent(key)}`).catch(() => {});
+        }
+    }
+
+    function syncAllCollectionsNow() {
+        if (jobs.length > 0 && Date.now() - lastLocalJobsWriteAt > 1000) {
+            syncCollectionToFirebase('ss_hybrid_care_jobs', dbRef, jobs);
+        }
+        if (stockItems.length > 0 && Date.now() - lastLocalStockWriteAt > 1000) {
+            syncCollectionToFirebase('ss_hybrid_care_stock', stockDbRef, stockItems);
+        }
+        if (invoices.length > 0 && Date.now() - lastLocalInvoicesWriteAt > 1000) {
+            syncCollectionToFirebase('ss_hybrid_care_invoices', invoicesDbRef, invoices);
+        }
+        if (quotations.length > 0 && Date.now() - lastLocalQuotationsWriteAt > 1000) {
+            syncCollectionToFirebase('ss_hybrid_care_quotations', quotationsDbRef, quotations);
+        }
+    }
+
+    function loadScriptAsync(src) {
+        return new Promise((resolve, reject) => {
+            const existing = Array.from(document.scripts).find(s => s.src === src);
+            if (existing) {
+                resolve();
+                return;
+            }
+            const script = document.createElement('script');
+            script.src = src;
+            script.async = true;
+            script.onload = () => resolve();
+            script.onerror = () => reject(new Error('Failed to load script: ' + src));
+            document.head.appendChild(script);
+        });
+    }
+
+    async function ensureFirebaseV8SdkLoaded() {
+        if (window.firebase && typeof window.firebase.initializeApp === 'function' && typeof window.firebase.database === 'function') {
+            sdkLoadStatus = 'Loaded (v8)';
+            return true;
+        }
+        try {
+            sdkLoadStatus = 'Loading firebase-app.js...';
+            updateDiagnosticsModalText();
+            await loadScriptAsync('https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js');
+            sdkLoadStatus = 'Loading firebase-database.js...';
+            updateDiagnosticsModalText();
+            await loadScriptAsync('https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js');
+            const ready = Boolean(window.firebase && typeof window.firebase.initializeApp === 'function' && typeof window.firebase.database === 'function');
+            sdkLoadStatus = ready ? 'Loaded (v8)' : 'SDK object missing after load';
+            return ready;
+        } catch (err) {
+            sdkLoadStatus = 'SDK blocked/unavailable — using REST API fallback';
+            return false;
+        }
+    }
+
+    function detachFirebaseListeners() {
+        try {
+            if (connectedRef) connectedRef.off();
+            if (dbRef) dbRef.off();
+            if (stockDbRef) stockDbRef.off();
+            if (invoicesDbRef) invoicesDbRef.off();
+            if (quotationsDbRef) quotationsDbRef.off();
+        } catch (e) {}
+    }
+
+    async function initFirebaseRealtime() {
+        FIREBASE_CONFIG = loadFirebaseConfig();
+        isSdkConnected = false;
+        isRestConnected = false;
+        lastFirebaseError = '';
+        activeSyncMode = 'CONNECTING';
+        updateSyncStatusBadge();
+
+        if (!FIREBASE_CONFIG.databaseURL || !FIREBASE_CONFIG.databaseURL.startsWith('https://')) {
+            activeSyncMode = 'OFFLINE';
+            lastFirebaseError = 'Invalid databaseURL (must start with https://)';
+            updateSyncStatusBadge();
+            return;
+        }
+
+        // Start REST API check & polling immediately so connection succeeds within ~1s even if WebSockets are blocked
+        startRestPollingLoop();
+
+        if (sdkTimeoutTimer) clearTimeout(sdkTimeoutTimer);
+        sdkTimeoutTimer = setTimeout(() => {
+            if (!isSdkConnected && !isRestConnected) {
+                pullAllViaRest(true);
+            }
+        }, 5000);
+
+        const sdkReady = await ensureFirebaseV8SdkLoaded();
+        if (!sdkReady) {
+            updateDiagnosticsModalText('SDK unavailable; operating via Firebase REST API.');
+            return;
+        }
+
+        try {
+            detachFirebaseListeners();
+            const targetAppName = 'ss_hybrid_care_v8';
+            const existingApp = firebase.apps.find(a => a.name === targetAppName);
+            let appObj = existingApp;
+            if (existingApp && existingApp.options.databaseURL !== FIREBASE_CONFIG.databaseURL) {
+                await existingApp.delete();
+                appObj = null;
+            }
+            if (!appObj) {
+                appObj = firebase.initializeApp({
+                    databaseURL: FIREBASE_CONFIG.databaseURL,
+                    projectId: FIREBASE_CONFIG.projectId
+                }, targetAppName);
+            }
+
+            db = firebase.database(appObj);
+            connectedRef = db.ref('.info/connected');
+            dbRef = db.ref('ss_hybrid_care_jobs');
+            stockDbRef = db.ref('ss_hybrid_care_stock');
+            invoicesDbRef = db.ref('ss_hybrid_care_invoices');
+            quotationsDbRef = db.ref('ss_hybrid_care_quotations');
+
+            connectedRef.on('value', (snap) => {
+                isSdkConnected = Boolean(snap.val());
+                if (isSdkConnected) {
+                    lastFirebaseError = '';
+                    updateSyncStatusBadge();
+                    syncAllCollectionsNow();
+                } else {
+                    updateSyncStatusBadge();
+                }
+            }, (err) => {
+                lastFirebaseError = err?.message || '.info/connected error';
+                if (isPermissionOrAuthError(err)) activeSyncMode = 'PERMISSION_DENIED';
+                updateSyncStatusBadge();
+            });
+
+            dbRef.on('value', (snap) => {
+                isSdkConnected = true;
+                updateSyncStatusBadge();
+                mergeRemoteJobsSnapshot(snap.val());
+                const params = new URLSearchParams(window.location.search);
+                const jobParam = params.get('job');
+                if (jobParam) {
+                    const currentInput = getVal('customerLookupInput', '').trim() || jobParam;
+                    renderCustomerTrackingJob(currentInput, jobParam);
+                }
+            }, (err) => {
+                lastFirebaseError = err?.message || 'jobs listener error';
+                if (isPermissionOrAuthError(err)) activeSyncMode = 'PERMISSION_DENIED';
+                updateSyncStatusBadge();
+            });
+
+            stockDbRef.on('value', (snap) => {
+                mergeRemoteStockSnapshot(snap.val());
+            }, (err) => {
+                if (isPermissionOrAuthError(err)) {
+                    activeSyncMode = 'PERMISSION_DENIED';
+                    lastFirebaseError = err?.message || 'stock permission denied';
+                    updateSyncStatusBadge();
+                }
+            });
+
+            invoicesDbRef.on('value', (snap) => {
+                mergeRemoteInvoicesSnapshot(snap.val());
+            });
+
+            quotationsDbRef.on('value', (snap) => {
+                mergeRemoteQuotationsSnapshot(snap.val());
+            });
+        } catch (err) {
+            lastFirebaseError = err?.message || 'SDK init exception';
+            updateSyncStatusBadge();
+        }
+    }
+
+    function openFirebaseConfigModal() {
+        FIREBASE_CONFIG = loadFirebaseConfig();
+        setVal('fbConfigDbUrl', FIREBASE_CONFIG.databaseURL || DEFAULT_FIREBASE_CONFIG.databaseURL);
+        setVal('fbConfigProjectId', FIREBASE_CONFIG.projectId || DEFAULT_FIREBASE_CONFIG.projectId);
+        updateDiagnosticsModalText();
+        getEl('firebaseModal')?.classList.remove('hidden');
+    }
+
+    function closeFirebaseConfigModal() {
+        getEl('firebaseModal')?.classList.add('hidden');
+    }
+
+    function saveFirebaseConfigModal() {
+        const dbUrl = getVal('fbConfigDbUrl', '').trim().replace(/\/+$/, '');
+        const projId = getVal('fbConfigProjectId', '').trim() || DEFAULT_FIREBASE_CONFIG.projectId;
+        if (!dbUrl || !dbUrl.startsWith('https://')) {
+            showToast('⚠️ Valid https:// Database URL එකක් ඇතුළත් කරන්න.');
+            return;
+        }
+        localStorage.setItem(FB_URL_STORAGE_KEY, dbUrl);
+        localStorage.setItem(FB_CONFIG_STORAGE_KEY, JSON.stringify({ databaseURL: dbUrl, projectId: projId }));
+        initFirebaseRealtime();
+        showToast('☁️ Firebase URL saved & reconnecting...');
+    }
+
+    function copyFirebaseRulesSnippet() {
+        const text = getEl('fbRulesSnippet')?.textContent || '{"rules":{".read":true,".write":true}}';
+        const temp = document.createElement('textarea');
+        temp.value = text;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        temp.remove();
+        showToast('📋 Firebase Realtime Database Rules copied!');
+    }
+
+    async function testFirebaseReadWrite() {
+        FIREBASE_CONFIG = loadFirebaseConfig();
+        updateDiagnosticsModalText('Testing Read/Write on /_connection_test via REST & SDK...');
+        try {
+            const payload = { ok: true, at: Date.now(), shop: SHOP_NAME };
+            await restPutNode('_connection_test', payload);
+            const readBack = await restGetNode('_connection_test');
+            await restDeleteNode('_connection_test');
+
+            isRestConnected = true;
+            lastFirebaseError = '';
+            updateSyncStatusBadge();
+            const msg = `Firebase Read/Write/Delete PASSED! (at: ${readBack?.at || payload.at})`;
+            updateDiagnosticsModalText(msg);
+            showToast('✅ ' + msg);
+            syncAllCollectionsNow();
+        } catch (err) {
+            isRestConnected = false;
+            lastFirebaseError = err?.message || 'Read/Write failed';
+            if (isPermissionOrAuthError(err?.status || err)) {
+                activeSyncMode = 'PERMISSION_DENIED';
+                updateSyncStatusBadge();
+                showToast('🔴 Firebase Permission Denied! Modal එකේ Rules check කරන්න.');
+            } else {
+                activeSyncMode = 'OFFLINE';
+                updateSyncStatusBadge();
+                showToast('❌ Firebase Test Failed: ' + lastFirebaseError);
+            }
+        }
+    }
+
+    function persistJobs() {
+        lastLocalJobsWriteAt = Date.now();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(jobs));
+        syncCollectionToFirebase('ss_hybrid_care_jobs', dbRef, jobs);
+    }
+
+    function persistStock() {
+        lastLocalStockWriteAt = Date.now();
+        stockItems = stockItems.map(normalizeStockItem);
+        localStorage.setItem(STOCK_STORAGE_KEY, JSON.stringify(stockItems));
+        syncCollectionToFirebase('ss_hybrid_care_stock', stockDbRef, stockItems);
+    }
+
+    function persistInvoices() {
+        lastLocalInvoicesWriteAt = Date.now();
+        localStorage.setItem(INVOICE_STORAGE_KEY, JSON.stringify(invoices));
+        syncCollectionToFirebase('ss_hybrid_care_invoices', invoicesDbRef, invoices);
+    }
+
+    function persistQuotations() {
+        lastLocalQuotationsWriteAt = Date.now();
+        localStorage.setItem(QUOTATION_STORAGE_KEY, JSON.stringify(quotations));
+        syncCollectionToFirebase('ss_hybrid_care_quotations', quotationsDbRef, quotations);
+    }
 
     // =========================================================================
     // LABOR CHARGE & BILL CALCULATION
@@ -2153,353 +2772,6 @@
         const partsLines = tempJobUsedParts.map(p => `${p.name} (${p.code}) x${p.qty} - Rs.${Number(p.total).toLocaleString()}`);
         setVal('repairedItems', partsLines.join('\n'));
         recalculateJobBill(tempJobUsedParts);
-    }
-
-    // =========================================================================
-    // FIREBASE REALTIME DATABASE CONNECTION & DIAGNOSTICS
-    // =========================================================================
-    function isPermissionOrAuthError(err) {
-        const code = String(err?.code || '').toLowerCase();
-        const msg = String(err?.message || '').toLowerCase();
-        return code.includes('permission_denied')
-            || code.includes('permission-denied')
-            || code.includes('auth')
-            || msg.includes('permission_denied')
-            || msg.includes('permission denied');
-    }
-
-    function isFirebaseSdkReady() {
-        return Boolean(window.firebase && typeof window.firebase.initializeApp === 'function' && typeof window.firebase.database === 'function');
-    }
-
-    function loadFirebaseConfig() {
-        const saved = safeJsonParse(localStorage.getItem(FB_CONFIG_STORAGE_KEY), null);
-        if (saved && saved.databaseURL) {
-            return {
-                databaseURL: String(saved.databaseURL).trim().replace(/\/+$/, ''),
-                projectId: String(saved.projectId || DEFAULT_FIREBASE_CONFIG.projectId).trim()
-            };
-        }
-        return { ...DEFAULT_FIREBASE_CONFIG };
-    }
-
-    let FIREBASE_CONFIG = loadFirebaseConfig();
-
-    function setCloudBadge(text, stateClass = '') {
-        const badge = getEl('cloudStatusBadge');
-        if (!badge) return;
-        badge.textContent = text;
-        badge.className = 'sync-pill' + (stateClass ? ' ' + stateClass : '');
-    }
-
-    function getFirebaseDiagnosticsText(extraNote = '') {
-        const sdkLoaded = isFirebaseSdkReady();
-        const online = typeof navigator !== 'undefined' ? navigator.onLine : true;
-        return [
-            `Database URL: ${FIREBASE_CONFIG.databaseURL || '(none)'}`,
-            `Project ID: ${FIREBASE_CONFIG.projectId || '(none)'}`,
-            `Firebase SDK Loaded: ${sdkLoaded ? 'YES (compat)' : 'NO (blocked or offline)'}`,
-            `Browser Online: ${online ? 'YES' : 'NO'}`,
-            `.info/connected: ${isFirebaseConnected ? 'TRUE (Connected)' : 'FALSE'}`,
-            `Last Error: ${lastFirebaseError || 'None'}`,
-            extraNote ? `Detail: ${extraNote}` : ''
-        ].filter(Boolean).join('\n');
-    }
-
-    function updateDiagnosticsModalText(extraNote = '') {
-        const diagEl = getEl('fbDiagResult');
-        if (diagEl) {
-            diagEl.textContent = getFirebaseDiagnosticsText(extraNote);
-        }
-    }
-
-    function reportFirebaseFailure(err, contextLabel = 'DB') {
-        const code = err?.code ? String(err.code) : '';
-        const msg = err?.message ? String(err.message) : '';
-        lastFirebaseError = [code, msg].filter(Boolean).join(': ') || `${contextLabel} error`;
-        if (isPermissionOrAuthError(err)) {
-            setCloudBadge('🔴 Rule / Auth Error', 'error');
-        } else {
-            setCloudBadge('🟠 Offline / Local Only', 'error');
-        }
-        updateDiagnosticsModalText(lastFirebaseError);
-    }
-
-    function syncCollectionToFirebase(ref, arr) {
-        if (!ref) return;
-        const mapObj = {};
-        (arr || []).forEach(item => {
-            if (!item) return;
-            const key = item.jobCode ? String(item.jobCode).trim().toUpperCase() : String(item.id);
-            if (key) mapObj[key] = item;
-        });
-        ref.set(mapObj).catch(err => {
-            reportFirebaseFailure(err, 'WRITE');
-        });
-    }
-
-    function syncAllCollectionsNow() {
-        try {
-            if (jobs.length > 0 && Date.now() - lastLocalJobsWriteAt > 1000) syncCollectionToFirebase(dbRef, jobs);
-            if (stockItems.length > 0 && Date.now() - lastLocalStockWriteAt > 1000) syncCollectionToFirebase(stockDbRef, stockItems);
-            if (invoices.length > 0 && Date.now() - lastLocalInvoicesWriteAt > 1000) syncCollectionToFirebase(invoicesDbRef, invoices);
-            if (quotations.length > 0 && Date.now() - lastLocalQuotationsWriteAt > 1000) syncCollectionToFirebase(quotationsDbRef, quotations);
-        } catch (e) {
-            reportFirebaseFailure(e, 'SYNC');
-        }
-    }
-
-    function detachFirebaseListeners() {
-        try {
-            if (connectedRef) connectedRef.off();
-            if (dbRef) dbRef.off();
-            if (stockDbRef) stockDbRef.off();
-            if (invoicesDbRef) invoicesDbRef.off();
-            if (quotationsDbRef) quotationsDbRef.off();
-        } catch (e) {
-            // ignore detach errors
-        }
-    }
-
-    function initFirebaseRealtime() {
-        FIREBASE_CONFIG = loadFirebaseConfig();
-        lastFirebaseError = '';
-        isFirebaseConnected = false;
-
-        if (!FIREBASE_CONFIG.databaseURL || !FIREBASE_CONFIG.databaseURL.startsWith('https://')) {
-            lastFirebaseError = 'Invalid or missing databaseURL (must start with https://)';
-            setCloudBadge('🟠 Offline / Local Only', 'error');
-            updateDiagnosticsModalText(lastFirebaseError);
-            return;
-        }
-
-        if (!isFirebaseSdkReady()) {
-            lastFirebaseError = window.__fbSdkLoadFailed
-                ? 'Firebase Compat CDN script failed to load or was blocked.'
-                : 'Firebase Compat SDK not available in window.';
-            setCloudBadge('🟠 Offline / Local Only', 'error');
-            updateDiagnosticsModalText(lastFirebaseError);
-            return;
-        }
-
-        setCloudBadge('🔄 Connecting / Reconnecting...', 'connecting');
-        updateDiagnosticsModalText('Initializing Firebase Realtime Database listeners...');
-
-        try {
-            detachFirebaseListeners();
-            const targetAppName = 'ss_hybrid_care_app';
-            const existingApp = firebase.apps.find(a => a.name === targetAppName);
-            const appInitPromise = existingApp
-                ? (existingApp.options.databaseURL === FIREBASE_CONFIG.databaseURL
-                    ? Promise.resolve(existingApp)
-                    : existingApp.delete().then(() => firebase.initializeApp(FIREBASE_CONFIG, targetAppName)))
-                : Promise.resolve(firebase.initializeApp(FIREBASE_CONFIG, targetAppName));
-
-            appInitPromise.then(appObj => {
-                db = firebase.database(appObj);
-                connectedRef = db.ref('.info/connected');
-                dbRef = db.ref('ss_hybrid_care_jobs');
-                stockDbRef = db.ref('ss_hybrid_care_stock');
-                invoicesDbRef = db.ref('ss_hybrid_care_invoices');
-                quotationsDbRef = db.ref('ss_hybrid_care_quotations');
-
-                connectedRef.on('value', (snap) => {
-                    isFirebaseConnected = Boolean(snap.val());
-                    if (isFirebaseConnected) {
-                        lastFirebaseError = '';
-                        setCloudBadge('🟢 Firebase Connected', 'connected');
-                        updateDiagnosticsModalText('Connected to Realtime Database.');
-                        syncAllCollectionsNow();
-                    } else if (!lastFirebaseError || !lastFirebaseError.toLowerCase().includes('permission')) {
-                        if (typeof navigator !== 'undefined' && navigator.onLine === false) {
-                            setCloudBadge('🟠 Offline / Local Only', 'error');
-                        } else {
-                            setCloudBadge('🔄 Connecting / Reconnecting...', 'connecting');
-                        }
-                        updateDiagnosticsModalText('Waiting for .info/connected = true...');
-                    }
-                }, (err) => {
-                    reportFirebaseFailure(err, '.info/connected');
-                });
-
-                dbRef.on('value', (snapshot) => {
-                    if (Date.now() - lastLocalJobsWriteAt < 4000) return;
-                    const val = snapshot.val();
-                    if (val && typeof val === 'object') {
-                        const rawList = Array.isArray(val) ? val.filter(Boolean) : Object.values(val);
-                        const deduped = [];
-                        const seenCodes = new Set();
-                        rawList.forEach(item => {
-                            if (!item) return;
-                            const codeKey = String(item.jobCode || item.id || '').trim().toUpperCase();
-                            if (!codeKey || seenCodes.has(codeKey)) return;
-                            seenCodes.add(codeKey);
-                            deduped.push(item);
-                        });
-                        deduped.sort((a, b) => (Number(b.id) || 0) - (Number(a.id) || 0));
-                        jobs = deduped;
-                        localStorage.setItem(STORAGE_KEY, JSON.stringify(jobs));
-                        refreshAllUI();
-                    } else if (val === null && jobs.length > 0 && isFirebaseConnected) {
-                        syncAllCollectionsNow();
-                    }
-                }, (err) => {
-                    reportFirebaseFailure(err, 'jobs');
-                });
-
-                stockDbRef.on('value', (snapshot) => {
-                    if (Date.now() - lastLocalStockWriteAt < 4000) return;
-                    const val = snapshot.val();
-                    if (val && typeof val === 'object') {
-                        const list = Array.isArray(val) ? val.filter(Boolean) : Object.values(val);
-                        list.sort((a, b) => (Number(b.id) || 0) - (Number(a.id) || 0));
-                        stockItems = list.map(normalizeStockItem);
-                        localStorage.setItem(STOCK_STORAGE_KEY, JSON.stringify(stockItems));
-                        refreshAllUI();
-                    } else if (val === null && stockItems.length > 0 && isFirebaseConnected) {
-                        syncCollectionToFirebase(stockDbRef, stockItems);
-                    }
-                }, (err) => {
-                    reportFirebaseFailure(err, 'stock');
-                });
-
-                invoicesDbRef.on('value', (snapshot) => {
-                    if (Date.now() - lastLocalInvoicesWriteAt < 4000) return;
-                    const val = snapshot.val();
-                    if (val && typeof val === 'object') {
-                        const list = Array.isArray(val) ? val.filter(Boolean) : Object.values(val);
-                        list.sort((a, b) => (Number(b.id) || 0) - (Number(a.id) || 0));
-                        invoices = list;
-                        localStorage.setItem(INVOICE_STORAGE_KEY, JSON.stringify(invoices));
-                        refreshAllUI();
-                    } else if (val === null && invoices.length > 0 && isFirebaseConnected) {
-                        syncCollectionToFirebase(invoicesDbRef, invoices);
-                    }
-                }, (err) => {
-                    reportFirebaseFailure(err, 'invoices');
-                });
-
-                quotationsDbRef.on('value', (snapshot) => {
-                    if (Date.now() - lastLocalQuotationsWriteAt < 4000) return;
-                    const val = snapshot.val();
-                    if (val && typeof val === 'object') {
-                        const list = Array.isArray(val) ? val.filter(Boolean) : Object.values(val);
-                        list.sort((a, b) => (Number(b.id) || 0) - (Number(a.id) || 0));
-                        quotations = list;
-                        localStorage.setItem(QUOTATION_STORAGE_KEY, JSON.stringify(quotations));
-                        refreshAllUI();
-                    } else if (val === null && quotations.length > 0 && isFirebaseConnected) {
-                        syncCollectionToFirebase(quotationsDbRef, quotations);
-                    }
-                }, (err) => {
-                    reportFirebaseFailure(err, 'quotations');
-                });
-            }).catch(err => {
-                reportFirebaseFailure(err, 'INIT');
-            });
-        } catch (err) {
-            reportFirebaseFailure(err, 'INIT');
-        }
-    }
-
-    function openFirebaseConfigModal() {
-        FIREBASE_CONFIG = loadFirebaseConfig();
-        setVal('fbConfigDbUrl', FIREBASE_CONFIG.databaseURL || DEFAULT_FIREBASE_CONFIG.databaseURL);
-        setVal('fbConfigProjectId', FIREBASE_CONFIG.projectId || DEFAULT_FIREBASE_CONFIG.projectId);
-        updateDiagnosticsModalText();
-        getEl('firebaseModal')?.classList.remove('hidden');
-    }
-
-    function closeFirebaseConfigModal() {
-        getEl('firebaseModal')?.classList.add('hidden');
-    }
-
-    function saveFirebaseConfigModal() {
-        const dbUrl = getVal('fbConfigDbUrl', '').trim().replace(/\/+$/, '');
-        const projId = getVal('fbConfigProjectId', '').trim();
-        if (!dbUrl) {
-            showToast('⚠️ Database URL ඇතුළත් කරන්න.');
-            return;
-        }
-        localStorage.setItem(FB_CONFIG_STORAGE_KEY, JSON.stringify({
-            databaseURL: dbUrl,
-            projectId: projId || DEFAULT_FIREBASE_CONFIG.projectId
-        }));
-        lastFirebaseError = '';
-        setCloudBadge('🔄 Connecting / Reconnecting...', 'connecting');
-        initFirebaseRealtime();
-        updateDiagnosticsModalText('Saved config and reconnecting to ' + dbUrl + '...');
-        showToast('☁️ Firebase configuration saved & reconnecting.');
-    }
-
-    function testFirebaseReadWrite() {
-        FIREBASE_CONFIG = loadFirebaseConfig();
-        if (!isFirebaseSdkReady()) {
-            lastFirebaseError = 'Firebase SDK is not loaded.';
-            setCloudBadge('🟠 Offline / Local Only', 'error');
-            updateDiagnosticsModalText('Cannot run Read/Write test because Firebase SDK is not loaded.');
-            showToast('❌ Firebase SDK not loaded.');
-            return;
-        }
-        if (!db) {
-            initFirebaseRealtime();
-        }
-        if (!db) {
-            lastFirebaseError = 'Firebase Database instance is not ready.';
-            updateDiagnosticsModalText('Database instance unavailable.');
-            showToast('❌ Database instance not ready.');
-            return;
-        }
-
-        const testRef = db.ref('_connection_test');
-        const payload = { ok: true, at: Date.now(), shop: SHOP_NAME };
-        updateDiagnosticsModalText('Running write -> read -> remove test on /_connection_test ...');
-
-        testRef.set(payload)
-            .then(() => testRef.once('value'))
-            .then((snap) => {
-                const val = snap.val();
-                return testRef.remove().then(() => val);
-            })
-            .then((val) => {
-                lastFirebaseError = '';
-                isFirebaseConnected = true;
-                setCloudBadge('🟢 Firebase Connected', 'connected');
-                const summary = `Read/Write/Remove PASSED on /_connection_test (at: ${val?.at || payload.at})`;
-                updateDiagnosticsModalText(summary);
-                showToast('✅ ' + summary);
-            })
-            .catch((err) => {
-                reportFirebaseFailure(err, '_connection_test');
-                const code = err?.code ? String(err.code) : 'ERROR';
-                const msg = err?.message ? String(err.message) : 'Read/Write failed';
-                showToast(`❌ DB Test Failed [${code}]: ${msg}`);
-            });
-    }
-
-    function persistJobs() {
-        lastLocalJobsWriteAt = Date.now();
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(jobs));
-        syncCollectionToFirebase(dbRef, jobs);
-    }
-
-    function persistStock() {
-        lastLocalStockWriteAt = Date.now();
-        stockItems = stockItems.map(normalizeStockItem);
-        localStorage.setItem(STOCK_STORAGE_KEY, JSON.stringify(stockItems));
-        syncCollectionToFirebase(stockDbRef, stockItems);
-    }
-
-    function persistInvoices() {
-        lastLocalInvoicesWriteAt = Date.now();
-        localStorage.setItem(INVOICE_STORAGE_KEY, JSON.stringify(invoices));
-        syncCollectionToFirebase(invoicesDbRef, invoices);
-    }
-
-    function persistQuotations() {
-        lastLocalQuotationsWriteAt = Date.now();
-        localStorage.setItem(QUOTATION_STORAGE_KEY, JSON.stringify(quotations));
-        syncCollectionToFirebase(quotationsDbRef, quotations);
     }
 
     function normalizeVehicleNo(vNo) {
@@ -2746,7 +3018,7 @@
             <div><strong>ℹ️ Repeat Vehicle (${escapeHtml(formatDisplayVehicleNo(rawNo))}):</strong> මෙම වාහනයට කලින් Job Cards <strong>${previousJobs.length}</strong> ක් ඇත. අලුත් Job එකක් ලෙස නව <strong>Job ID</strong> එකකින් Save වේ.</div>
             <div style="margin-top:6px; display:flex; gap:5px; flex-wrap:wrap; align-items:center;">
                 <span>Past Jobs:</span> ${chipsHtml}
-                <button type="button" class="btn btn-secondary btn-sm" style="padding:2px 8px; font-size:0.73rem;" onclick="openVehicleHistoryByNo('${escapeHtml(formatDisplayVehicleNo(rawNo))}')">📋 Full History</button>
+                <button type="button" class="btn btn-secondary btn-sm" style="padding:2px 8px; font-size:0.73rem;" onclick="openVehicleHistoryByNo('${escapeHtml(formatDisplayVehicleNo(rawNo))}')">📜 Full History</button>
             </div>
         `;
     }
@@ -2959,12 +3231,10 @@
         const unitPrice = (!Number.isNaN(priceInputVal) && priceInputVal >= 0) ? priceInputVal : (Number(part.sellPrice) || 0);
         const lineTotal = addQty * unitPrice;
 
-        // 1) Deduct quantity from Stock immediately and persist
         const remainingQty = availableQty - addQty;
         stockItems[stockIdx].qty = remainingQty;
         persistStock();
 
-        // 2) Add or merge into tempJobUsedParts
         const existingPartIdx = tempJobUsedParts.findIndex(
             up => String(up.stockId) === String(part.id) && Number(up.price) === Number(unitPrice)
         );
@@ -3001,7 +3271,6 @@
         const removedPart = tempJobUsedParts[partIndex];
         if (!removedPart) return;
 
-        // 1) Restore quantity back into Stock immediately
         const stockId = String(removedPart.stockId || '');
         const stockIdx = stockItems.findIndex(s => String(s.id) === stockId);
         if (stockIdx !== -1) {
@@ -3009,7 +3278,6 @@
             persistStock();
         }
 
-        // 2) Remove from tempJobUsedParts & recalculate total (Labor + Remaining Parts)
         tempJobUsedParts.splice(partIndex, 1);
         syncPartsSummaryIntoJobText();
         persistOpenedJobPartsIfSaved();
@@ -3276,6 +3544,7 @@
         }
 
         persistJobs();
+        syncSingleItemToFirebase('ss_hybrid_care_jobs', dbRef, jobObj.jobCode, jobObj);
         resetJobForm(false);
         refreshAllUI();
     }
@@ -3288,6 +3557,7 @@
         if (idx === -1) return;
         jobs[idx].status = newStatus;
         persistJobs();
+        syncSingleItemToFirebase('ss_hybrid_care_jobs', dbRef, jobs[idx].jobCode, jobs[idx]);
         refreshAllUI();
         showToast(`${jobs[idx].jobCode} Status: ${newStatus}`);
     }
@@ -3313,6 +3583,7 @@
         const deletedCode = String(job.jobCode || '').trim().toUpperCase();
         jobs.splice(idx, 1);
         persistJobs();
+        deleteSingleItemFromFirebase('ss_hybrid_care_jobs', dbRef, deletedCode);
         const activeKey = String(getVal('activeJobCodeKey', '') || getVal('editJobId', '')).trim().toUpperCase();
         if (activeKey && (activeKey === deletedCode || activeKey === String(job.id).toUpperCase())) {
             resetJobForm(false);
@@ -3378,6 +3649,7 @@
         });
 
         persistJobs();
+        syncSingleItemToFirebase('ss_hybrid_care_jobs', dbRef, jobs[idx].jobCode, jobs[idx]);
         setVal('progressNote', '');
         const mediaInp = getEl('progressMediaInput');
         if (mediaInp) mediaInp.value = '';
@@ -3550,7 +3822,7 @@
                         <button type="button" class="btn btn-whatsapp btn-sm" onclick="sendWhatsAppLink('${safeCodeJs}')">📲 WhatsApp</button>
                         <button type="button" class="btn btn-light btn-sm" onclick="copyTrackingLink('${safeCodeJs}')">🔗 Link</button>
                         <button type="button" class="btn btn-warning btn-sm" onclick="openJobCard('${safeCodeJs}', false)">✏️ Edit</button>
-                        <button type="button" class="btn btn-light btn-sm" style="grid-column: span 2; font-weight:700;" onclick="openVehicleHistoryByNo('${escapeHtml(formatDisplayVehicleNo(job.vehicleNo))}')">📋 History (${vehTotalJobs})</button>
+                        <button type="button" class="btn btn-light btn-sm" style="grid-column: span 2; font-weight:700;" onclick="openVehicleHistoryByNo('${escapeHtml(formatDisplayVehicleNo(job.vehicleNo))}')">📜 History (${vehTotalJobs})</button>
                         <button type="button" class="btn btn-danger btn-sm" onclick="deleteJob('${safeCodeJs}')">🗑️</button>
                     </div>
                 </div>
@@ -3808,6 +4080,7 @@
     function deleteInvoice(invId) {
         invoices = invoices.filter(i => Number(i.id) !== Number(invId));
         persistInvoices();
+        deleteSingleItemFromFirebase('ss_hybrid_care_invoices', invoicesDbRef, String(invId));
         refreshAllUI();
         showToast('🗑️ Invoice මකා දමන ලදී.');
     }
@@ -3885,15 +4158,33 @@
                 <td><strong>${formatCurrency(q.grandTotal || 0)}</strong></td>
                 <td style="white-space:nowrap;">
                     <button type="button" class="btn btn-dark btn-sm" onclick="openA4Quotation(${q.id})">🖨️ A4</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="convertQuotationToJob(${q.id})">🚘 To Job</button>
                     <button type="button" class="btn btn-danger btn-sm" onclick="deleteQuotation(${q.id})">🗑️</button>
                 </td>
             </tr>
         `).join('');
     }
 
+    function convertQuotationToJob(quoId) {
+        const quo = quotations.find(q => Number(q.id) === Number(quoId));
+        if (!quo) return;
+        switchTab('jobcards');
+        resetJobForm(true);
+        setVal('vehicleNo', formatDisplayVehicleNo(quo.vehicleNo || ''));
+        setVal('vehicleModel', quo.vehicleModel || '');
+        setVal('customerName', quo.customerName || '');
+        setVal('phone', quo.phone || '');
+        const itemsText = (quo.items || []).map(it => `${it.desc} x${it.qty} - Rs.${Number(it.total).toLocaleString()}`).join('\n');
+        setVal('faultDesc', `From Quotation ${quo.quoNo}:\n${itemsText}`);
+        setVal('totalAmount', Number(quo.grandTotal) || 0);
+        checkRepeatVehicleForForm();
+        showToast(`🚘 ${quo.quoNo} විස්තර අලුත් Job Card එකකට පුරවන ලදී!`);
+    }
+
     function deleteQuotation(quoId) {
         quotations = quotations.filter(q => Number(q.id) !== Number(quoId));
         persistQuotations();
+        deleteSingleItemFromFirebase('ss_hybrid_care_quotations', quotationsDbRef, String(quoId));
         refreshAllUI();
         showToast('🗑️ Quotation මකා දමන ලදී.');
     }
@@ -4114,6 +4405,7 @@
     function deleteStockItem(stockId) {
         stockItems = stockItems.filter(s => String(s.id) !== String(stockId));
         persistStock();
+        deleteSingleItemFromFirebase('ss_hybrid_care_stock', stockDbRef, String(stockId));
         refreshAllUI();
         showToast('🗑️ Stock item deleted.');
     }
@@ -4267,9 +4559,7 @@
             totalBilled += Number(j.totalAmount) || 0;
             totalPaid += Number(j.advanceAmount) || 0;
             if (Array.isArray(j.usedParts)) {
-                j.usedParts.forEach(p => {
-                    totalPartsQty += Number(p.qty) || 0;
-                });
+                j.usedParts.forEach(p => { totalPartsQty += Number(p.qty) || 0; });
             }
         });
 
@@ -4433,90 +4723,108 @@
             showToast('⚠️ Vehicle History Report සඳහා වාහනයක් තෝරන්න.');
             return;
         }
-        setDynamicPrintPageSize('A4', '10mm');
+        setDynamicPrintPageSize('A4 portrait', '8mm');
+
+        const historyMinRows = 6;
+        const historyFillerCount = Math.max(0, historyMinRows - data.jobs.length);
+        const historyFillerHtml = Array.from({ length: historyFillerCount }).map(() =>
+            `<tr class="a4-filler-row"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>`
+        ).join('');
 
         const area = getEl('printableArea');
         if (area) {
             area.innerHTML = `
                 <div class="a4-sheet">
-                    <div class="a4-header">
-                        <div>
-                            <h2 style="color:#0f766e; font-size:1.45rem;">⚡ ${SHOP_NAME}</h2>
-                            <p style="font-size:0.84rem; color:#475569;">Hybrid Vehicle Diagnostics, Repair &amp; Spare Parts</p>
-                            <p style="font-size:0.84rem; font-weight:700;">Tel: ${SHOP_TEL}</p>
+                    <div class="a4-top-section">
+                        <div class="a4-header">
+                            <div>
+                                <h2 style="color:#0f766e; font-size:1.5rem;">⚡ ${SHOP_NAME}</h2>
+                                <p style="font-size:0.85rem; color:#475569;">Hybrid Vehicle Diagnostics, Repair &amp; Spare Parts</p>
+                                <p style="font-size:0.85rem; font-weight:700;">Tel: ${SHOP_TEL}</p>
+                            </div>
+                            <div style="text-align:right;">
+                                <div class="a4-doc-badge">VEHICLE SERVICE &amp; REPAIR HISTORY</div>
+                                <div style="margin-top:6px; font-weight:800; font-size:1.05rem;">${escapeHtml(data.vehicleNo)}</div>
+                                <div style="font-size:0.82rem; color:#475569;">Printed Date: ${new Date().toLocaleDateString('en-CA')}</div>
+                            </div>
                         </div>
-                        <div style="text-align:right;">
-                            <div class="a4-doc-badge">COMPLETE VEHICLE SERVICE &amp; REPAIR HISTORY REPORT</div>
-                            <div style="margin-top:6px; font-weight:800; font-size:1rem;">${escapeHtml(data.vehicleNo)}</div>
-                            <div style="font-size:0.8rem; color:#475569;">Printed Date: ${new Date().toLocaleDateString('en-CA')}</div>
+
+                        <div class="a4-grid-2">
+                            <div class="a4-box">
+                                <strong style="color:#0f766e;">Vehicle Profile</strong>
+                                <div>Vehicle No: <strong>${escapeHtml(data.vehicleNo)}</strong></div>
+                                <div>Brand / Model: <strong>${escapeHtml(data.vehicleBrand)} ${escapeHtml(data.vehicleModel)}</strong></div>
+                                <div>Owner(s): <strong>${escapeHtml(data.owners.join(', '))}</strong></div>
+                                <div>Contact Phone(s): <strong>${escapeHtml(data.phones.join(', '))}</strong></div>
+                            </div>
+                            <div class="a4-box">
+                                <strong style="color:#0f766e;">Cumulative Service Summary</strong>
+                                <div>Total Service Visits / Jobs: <strong>${data.totalVisits}</strong></div>
+                                <div>Total Replaced Parts (Units): <strong>${data.totalPartsQty}</strong></div>
+                                <div>Total Labor Charge: <strong>${formatCurrency(data.totalLabor)}</strong></div>
+                                <div>Total Billed Amount: <strong>${formatCurrency(data.totalBilled)}</strong></div>
+                                <div>Total Paid: <strong>${formatCurrency(data.totalPaid)}</strong> | Balance Due: <strong>${formatCurrency(data.balanceDue)}</strong></div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="a4-grid-2">
-                        <div class="a4-box">
-                            <strong style="color:#0f766e;">Vehicle Profile</strong>
-                            <div>Vehicle No: <strong>${escapeHtml(data.vehicleNo)}</strong></div>
-                            <div>Brand / Model: <strong>${escapeHtml(data.vehicleBrand)} ${escapeHtml(data.vehicleModel)}</strong></div>
-                            <div>Owner(s): <strong>${escapeHtml(data.owners.join(', '))}</strong></div>
-                            <div>Contact Phone(s): <strong>${escapeHtml(data.phones.join(', '))}</strong></div>
-                        </div>
-                        <div class="a4-box">
-                            <strong style="color:#0f766e;">Cumulative Service Summary</strong>
-                            <div>Total Service Visits / Jobs: <strong>${data.totalVisits}</strong></div>
-                            <div>Total Replaced Parts (Units): <strong>${data.totalPartsQty}</strong></div>
-                            <div>Total Labor Charge: <strong>${formatCurrency(data.totalLabor)}</strong></div>
-                            <div>Total Billed Amount: <strong>${formatCurrency(data.totalBilled)}</strong></div>
-                            <div>Total Paid: <strong>${formatCurrency(data.totalPaid)}</strong> | Balance Due: <strong>${formatCurrency(data.balanceDue)}</strong></div>
-                        </div>
-                    </div>
-
-                    <strong style="display:block; margin-top:8px; color:#0f172a;">Chronological Service &amp; Repair Records:</strong>
-                    <table class="a4-table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Job ID &amp; Date</th>
-                                <th>Reported Fault &amp; Inspection</th>
-                                <th>Replaced Parts &amp; Work Done</th>
-                                <th>Status / Warranty</th>
-                                <th>Bill (Rs.)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${data.jobs.map((j, idx) => {
-                                const partsList = Array.isArray(j.usedParts) && j.usedParts.length > 0
-                                    ? j.usedParts.map(p => `${p.name} (${p.code}) x${p.qty} = Rs.${Number(p.total).toLocaleString()}`).join('<br>')
-                                    : '';
-                                return `
+                    <div class="a4-middle-section">
+                        <strong style="display:block; margin-bottom:5px; color:#0f172a;">Chronological Service &amp; Repair Records:</strong>
+                        <div class="a4-table-wrap">
+                            <table class="a4-table">
+                                <thead>
                                     <tr>
-                                        <td>${idx + 1}</td>
-                                        <td><strong>${escapeHtml(j.jobCode)}</strong><br><small>${escapeHtml(j.createdAt || '')}</small></td>
-                                        <td>
-                                            <strong>Fault:</strong> ${escapeHtml(j.faultDesc || '-')}<br>
-                                            ${j.inspectionReport ? `<small><strong>Inspection:</strong> ${escapeHtml(j.inspectionReport)}</small>` : ''}
-                                        </td>
-                                        <td>
-                                            ${partsList ? `<div>${partsList}</div>` : ''}
-                                            ${j.repairedItems ? `<small>${escapeHtml(j.repairedItems)}</small>` : '-'}
-                                        </td>
-                                        <td>
-                                            <strong>${escapeHtml(j.status)}</strong><br>
-                                            ${j.warrantyDate ? `<small>Warranty: ${escapeHtml(j.warrantyDate)}</small>` : ''}
-                                        </td>
-                                        <td>
-                                            <strong>${Number(j.totalAmount || 0).toLocaleString()}</strong><br>
-                                            <small>Labor: ${Number(j.laborCharge || 0).toLocaleString()}</small><br>
-                                            <small>Paid: ${Number(j.advanceAmount || 0).toLocaleString()}</small>
-                                        </td>
+                                        <th style="width:4%;">#</th>
+                                        <th style="width:15%;">Job ID &amp; Date</th>
+                                        <th style="width:27%;">Reported Fault &amp; Inspection</th>
+                                        <th style="width:28%;">Replaced Parts &amp; Work Done</th>
+                                        <th style="width:13%;">Status / Warranty</th>
+                                        <th style="width:13%;">Bill (Rs.)</th>
                                     </tr>
-                                `;
-                            }).join('')}
-                        </tbody>
-                    </table>
+                                </thead>
+                                <tbody>
+                                    ${data.jobs.map((j, idx) => {
+                                        const partsList = Array.isArray(j.usedParts) && j.usedParts.length > 0
+                                            ? j.usedParts.map(p => `${p.name} (${p.code}) x${p.qty} = Rs.${Number(p.total).toLocaleString()}`).join('<br>')
+                                            : '';
+                                        return `
+                                            <tr>
+                                                <td>${idx + 1}</td>
+                                                <td><strong>${escapeHtml(j.jobCode)}</strong><br><small>${escapeHtml(j.createdAt || '')}</small></td>
+                                                <td>
+                                                    <strong>Fault:</strong> ${escapeHtml(j.faultDesc || '-')}<br>
+                                                    ${j.inspectionReport ? `<small><strong>Inspection:</strong> ${escapeHtml(j.inspectionReport)}</small>` : ''}
+                                                </td>
+                                                <td>
+                                                    ${partsList ? `<div>${partsList}</div>` : ''}
+                                                    ${j.repairedItems ? `<small>${escapeHtml(j.repairedItems)}</small>` : '-'}
+                                                </td>
+                                                <td>
+                                                    <strong>${escapeHtml(j.status)}</strong><br>
+                                                    ${j.warrantyDate ? `<small>Warranty: ${escapeHtml(j.warrantyDate)}</small>` : ''}
+                                                </td>
+                                                <td>
+                                                    <strong>${Number(j.totalAmount || 0).toLocaleString()}</strong><br>
+                                                    <small>Labor: ${Number(j.laborCharge || 0).toLocaleString()}</small><br>
+                                                    <small>Paid: ${Number(j.advanceAmount || 0).toLocaleString()}</small>
+                                                </td>
+                                            </tr>
+                                        `;
+                                    }).join('')}
+                                    ${historyFillerHtml}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
-                    <div class="a4-signatures">
-                        <div class="sig-line">Customer / Owner Acknowledgement</div>
-                        <div class="sig-line">Authorized Service Manager (${SHOP_NAME})</div>
+                    <div class="a4-bottom-section">
+                        <div class="a4-terms-box">
+                            <strong>Service Record Certification:</strong> This official service &amp; maintenance history report is generated by <strong>${SHOP_NAME}</strong> for vehicle <strong>${escapeHtml(data.vehicleNo)}</strong>. All replaced hybrid components and service records are verified against workshop job cards.
+                        </div>
+                        <div class="a4-signatures">
+                            <div class="sig-line">Customer / Owner Acknowledgement</div>
+                            <div class="sig-line">Authorized Service Manager (${SHOP_NAME})</div>
+                        </div>
                     </div>
                 </div>
             `;
@@ -4525,7 +4833,7 @@
     }
 
     // =========================================================================
-    // A4 PRINTING (JOB CARD, INVOICE, QUOTATION)
+    // A4 FULL-PAGE PRINTING (JOB CARD, INVOICE, QUOTATION)
     // =========================================================================
     function setDynamicPrintPageSize(sizeCss, marginCss) {
         let styleEl = getEl('dynamicPageStyle');
@@ -4544,102 +4852,154 @@
     function openA4JobCard(jobCodeOrId) {
         const job = findJobByCodeOrId(jobCodeOrId);
         if (!job) return;
-        setDynamicPrintPageSize('A4', '10mm');
+        setDynamicPrintPageSize('A4 portrait', '8mm');
 
         const usedParts = Array.isArray(job.usedParts) ? job.usedParts : [];
         const partsSum = getPartsTotalAmount(usedParts);
         const laborVal = Number(job.laborCharge) || 0;
         const balance = (Number(job.totalAmount) || 0) - (Number(job.advanceAmount) || 0);
 
+        const lineRows = usedParts.map((p, i) => ({
+            num: i + 1,
+            code: escapeHtml(p.code),
+            desc: escapeHtml(p.name),
+            qty: p.qty,
+            price: formatCurrency(p.price),
+            total: `<strong>${formatCurrency(p.total)}</strong>`
+        }));
+
+        if (laborVal > 0 || lineRows.length === 0) {
+            lineRows.push({
+                num: lineRows.length + 1,
+                code: 'LABOR',
+                desc: 'Hybrid Diagnostics &amp; Service Labor Charge',
+                qty: 1,
+                price: formatCurrency(laborVal),
+                total: `<strong>${formatCurrency(laborVal)}</strong>`
+            });
+        }
+
+        const minJobRows = 7;
+        const fillerRowCount = Math.max(0, minJobRows - lineRows.length);
+        const fillerRowsHtml = Array.from({ length: fillerRowCount }).map(() =>
+            `<tr class="a4-filler-row"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>`
+        ).join('');
+
         const area = getEl('printableArea');
         if (area) {
             area.innerHTML = `
-                <div class="a4-sheet">
-                    <div class="a4-header">
-                        <div>
-                            <h2 style="color:#0f766e; font-size:1.45rem;">⚡ ${SHOP_NAME}</h2>
-                            <p style="font-size:0.84rem; color:#475569;">Hybrid Vehicle Diagnostics, Battery &amp; Electrical Specialists</p>
-                            <p style="font-size:0.84rem; font-weight:700;">Tel: ${SHOP_TEL}</p>
+                <div class="a4-sheet a4-jobcard-sheet">
+                    <div class="a4-top-section">
+                        <div class="a4-header">
+                            <div>
+                                <h2 style="color:#0f766e; font-size:1.5rem;">⚡ ${SHOP_NAME}</h2>
+                                <p style="font-size:0.84rem; color:#475569;">Hybrid Vehicle Diagnostics, Battery &amp; Electrical Specialists</p>
+                                <p style="font-size:0.84rem; font-weight:700;">Tel: ${SHOP_TEL}</p>
+                            </div>
+                            <div style="text-align:right;">
+                                <div class="a4-doc-badge">CUSTOMER JOB CARD</div>
+                                <div style="margin-top:5px; font-weight:800; font-size:1.05rem;">${escapeHtml(job.jobCode)}</div>
+                                <div style="font-size:0.82rem; color:#475569;">Date: ${escapeHtml(job.createdAt || '')} ${job.createdAtTime ? `(${escapeHtml(job.createdAtTime)})` : ''}</div>
+                            </div>
                         </div>
-                        <div style="text-align:right;">
-                            <div class="a4-doc-badge">CUSTOMER JOB CARD</div>
-                            <div style="margin-top:6px; font-weight:800; font-size:1rem;">${escapeHtml(job.jobCode)}</div>
-                            <div style="font-size:0.8rem; color:#475569;">Date: ${escapeHtml(job.createdAt || '')}</div>
+
+                        <div class="a4-grid-2">
+                            <div class="a4-box">
+                                <strong style="color:#0f766e;">Customer Details</strong>
+                                <div>Name: <strong>${escapeHtml(job.customerName)}</strong></div>
+                                <div>Phone: <strong>${escapeHtml(job.phone)}</strong></div>
+                                <div>Job Status: <strong>${escapeHtml(job.status)}</strong></div>
+                            </div>
+                            <div class="a4-box">
+                                <strong style="color:#0f766e;">Vehicle Details</strong>
+                                <div>Vehicle No: <strong>${escapeHtml(job.vehicleNo)}</strong></div>
+                                <div>Brand / Model: <strong>${escapeHtml(job.vehicleBrand)} ${escapeHtml(job.vehicleModel || '')}</strong></div>
+                                <div>Warranty Valid Until: <strong>${escapeHtml(job.warrantyDate || 'N/A')}</strong></div>
+                            </div>
+                        </div>
+
+                        <div class="a4-checklist-strip">
+                            <div class="a4-check-item"><span class="a4-check-box"></span>HV Battery Health</div>
+                            <div class="a4-check-item"><span class="a4-check-box"></span>Inverter &amp; Cooling</div>
+                            <div class="a4-check-item"><span class="a4-check-box"></span>ABS / Brake System</div>
+                            <div class="a4-check-item"><span class="a4-check-box"></span>OBD-II Scan &amp; Codes</div>
+                            <div class="a4-check-item"><span class="a4-check-box"></span>12V Aux Battery</div>
+                            <div class="a4-check-item"><span class="a4-check-box"></span>Engine Oil &amp; Fluids</div>
+                            <div class="a4-check-item"><span class="a4-check-box"></span>Exterior / Body Check</div>
+                            <div class="a4-check-item"><span class="a4-check-box"></span>Road Test Verified</div>
+                        </div>
+
+                        <div class="a4-box" style="margin-bottom:9px; border-left:4px solid #dc2626;">
+                            <strong style="color:#b91c1c;">Reported Fault / Customer Complaint:</strong>
+                            <div style="margin-top:3px; white-space:pre-line; min-height:22px;">${escapeHtml(job.faultDesc)}</div>
+                        </div>
+
+                        <div class="a4-grid-2" style="margin-bottom:6px;">
+                            <div class="a4-box">
+                                <strong style="color:#0f766e;">Intake Condition Notes:</strong>
+                                <div style="margin-top:3px; white-space:pre-line; min-height:30px;">${escapeHtml(job.intakeNote || 'Checked at reception')}</div>
+                            </div>
+                            <div class="a4-box">
+                                <strong style="color:#0f766e;">Vehicle Inspection Report:</strong>
+                                <div style="margin-top:3px; white-space:pre-line; min-height:30px;">${escapeHtml(job.inspectionReport || 'Pending detailed inspection')}</div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="a4-grid-2">
-                        <div class="a4-box">
-                            <strong style="color:#0f766e;">Customer Details</strong>
-                            <div>Name: <strong>${escapeHtml(job.customerName)}</strong></div>
-                            <div>Phone: <strong>${escapeHtml(job.phone)}</strong></div>
-                            <div>Status: <strong>${escapeHtml(job.status)}</strong></div>
-                        </div>
-                        <div class="a4-box">
-                            <strong style="color:#0f766e;">Vehicle Details</strong>
-                            <div>Vehicle No: <strong>${escapeHtml(job.vehicleNo)}</strong></div>
-                            <div>Brand / Model: <strong>${escapeHtml(job.vehicleBrand)} ${escapeHtml(job.vehicleModel || '')}</strong></div>
-                            <div>Warranty Date: <strong>${escapeHtml(job.warrantyDate || 'N/A')}</strong></div>
-                        </div>
-                    </div>
-
-                    <div class="a4-box" style="margin-bottom:12px;">
-                        <strong style="color:#b91c1c;">Reported Fault / Customer Complaint:</strong>
-                        <div style="margin-top:4px; white-space:pre-line;">${escapeHtml(job.faultDesc)}</div>
-                    </div>
-
-                    <div class="a4-grid-2">
-                        <div class="a4-box">
-                            <strong>Intake Condition Notes:</strong>
-                            <div style="margin-top:4px; white-space:pre-line;">${escapeHtml(job.intakeNote || 'Checked at reception')}</div>
-                        </div>
-                        <div class="a4-box">
-                            <strong>Vehicle Inspection Report:</strong>
-                            <div style="margin-top:4px; white-space:pre-line;">${escapeHtml(job.inspectionReport || 'Pending detailed inspection')}</div>
-                        </div>
-                    </div>
-
-                    ${usedParts.length > 0 ? `
-                        <strong style="display:block; margin-top:8px;">Allocated Spare Parts (From Stock):</strong>
-                        <table class="a4-table">
-                            <thead>
-                                <tr><th>#</th><th>Part Code</th><th>Part Name</th><th>Qty</th><th>Unit Price</th><th>Total</th></tr>
-                            </thead>
-                            <tbody>
-                                ${usedParts.map((p, i) => `
+                    <div class="a4-middle-section">
+                        <strong style="display:block; margin-bottom:3px; color:#0f172a;">Allocated Spare Parts &amp; Labor Breakdown:</strong>
+                        <div class="a4-table-wrap">
+                            <table class="a4-table">
+                                <thead>
                                     <tr>
-                                        <td>${i + 1}</td>
-                                        <td>${escapeHtml(p.code)}</td>
-                                        <td>${escapeHtml(p.name)}</td>
-                                        <td>${p.qty}</td>
-                                        <td>${formatCurrency(p.price)}</td>
-                                        <td><strong>${formatCurrency(p.total)}</strong></td>
+                                        <th style="width:6%;">#</th>
+                                        <th style="width:15%;">Code</th>
+                                        <th style="width:41%;">Part / Service Description</th>
+                                        <th style="width:8%;">Qty</th>
+                                        <th style="width:15%;">Unit Price</th>
+                                        <th style="width:15%;">Total</th>
                                     </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
-                    ` : ''}
+                                </thead>
+                                <tbody>
+                                    ${lineRows.map(r => `
+                                        <tr>
+                                            <td>${r.num}</td>
+                                            <td><strong>${r.code}</strong></td>
+                                            <td>${r.desc}</td>
+                                            <td>${r.qty}</td>
+                                            <td>${r.price}</td>
+                                            <td>${r.total}</td>
+                                        </tr>
+                                    `).join('')}
+                                    ${fillerRowsHtml}
+                                </tbody>
+                            </table>
+                        </div>
 
-                    <div class="a4-box" style="margin-bottom:12px;">
-                        <strong>Repair &amp; Service Work Summary:</strong>
-                        <div style="margin-top:4px; white-space:pre-line;">${escapeHtml(job.repairedItems || '-')}</div>
+                        <div class="a4-box" style="margin-bottom:8px;">
+                            <strong style="color:#0f766e;">Repair &amp; Service Work Summary / Technician Notes:</strong>
+                            <div style="margin-top:3px; white-space:pre-line; min-height:34px;">${escapeHtml(job.repairedItems || '-')}</div>
+                        </div>
+
+                        <div class="a4-box" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; font-size:0.9rem; background:#f0fdfa; border-color:#99f6e4;">
+                            <span>Labor Charge: <strong>${formatCurrency(laborVal)}</strong></span>
+                            <span>Parts Total: <strong>${formatCurrency(partsSum)}</strong></span>
+                            <span>Total Bill: <strong>${formatCurrency(job.totalAmount || 0)}</strong></span>
+                            <span>Advance Paid: <strong>${formatCurrency(job.advanceAmount || 0)}</strong></span>
+                            <span style="color:#0f766e;">Balance Due: <strong>${formatCurrency(balance)}</strong></span>
+                        </div>
                     </div>
 
-                    <div class="a4-box" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; font-size:0.9rem; background:#f0fdfa;">
-                        <span>Labor Charge: <strong>${formatCurrency(laborVal)}</strong></span>
-                        <span>Parts Total: <strong>${formatCurrency(partsSum)}</strong></span>
-                        <span>Total Bill: <strong>${formatCurrency(job.totalAmount || 0)}</strong></span>
-                        <span>Advance Paid: <strong>${formatCurrency(job.advanceAmount || 0)}</strong></span>
-                        <span>Balance Due: <strong>${formatCurrency(balance)}</strong></span>
-                    </div>
+                    <div class="a4-bottom-section">
+                        <div class="a4-terms-box">
+                            <div><strong>📲 Live Repair Status Tracking Link:</strong> ${escapeHtml(getCustomerTrackingLink(job))}</div>
+                            <div style="margin-top:3px;"><strong>Terms &amp; Warranty Conditions:</strong> Warranty applies only to specified hybrid parts and workmanship up to the warranty date above. Please collect your vehicle within 3 days of completion notification. ${SHOP_NAME} is not responsible for personal valuables left inside the vehicle.</div>
+                        </div>
 
-                    <div style="margin-top:10px; font-size:0.78rem; color:#475569;">
-                        <strong>Live Tracking Link:</strong> ${escapeHtml(getCustomerTrackingLink(job))}
-                    </div>
-
-                    <div class="a4-signatures">
-                        <div class="sig-line">Customer Signature</div>
-                        <div class="sig-line">Authorized Officer (${SHOP_NAME})</div>
+                        <div class="a4-signatures">
+                            <div class="sig-line">Customer Signature</div>
+                            <div class="sig-line">Authorized Technician / Officer (${SHOP_NAME})</div>
+                        </div>
                     </div>
                 </div>
             `;
@@ -4650,66 +5010,98 @@
     function openA4Invoice(invId) {
         const inv = invoices.find(i => Number(i.id) === Number(invId));
         if (!inv) return;
-        setDynamicPrintPageSize('A4', '10mm');
+        setDynamicPrintPageSize('A4 portrait', '8mm');
+
+        const items = Array.isArray(inv.items) ? inv.items : [];
+        const minInvRows = 9;
+        const fillerRowCount = Math.max(0, minInvRows - items.length);
+        const fillerRowsHtml = Array.from({ length: fillerRowCount }).map(() =>
+            `<tr class="a4-filler-row"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>`
+        ).join('');
 
         const area = getEl('printableArea');
         if (area) {
             area.innerHTML = `
                 <div class="a4-sheet">
-                    <div class="a4-header">
-                        <div>
-                            <h2 style="color:#0f766e; font-size:1.45rem;">⚡ ${SHOP_NAME}</h2>
-                            <p style="font-size:0.84rem; color:#475569;">Hybrid Vehicle Diagnostics, Repair &amp; Spare Parts</p>
-                            <p style="font-size:0.84rem; font-weight:700;">Tel: ${SHOP_TEL}</p>
+                    <div class="a4-top-section">
+                        <div class="a4-header">
+                            <div>
+                                <h2 style="color:#0f766e; font-size:1.5rem;">⚡ ${SHOP_NAME}</h2>
+                                <p style="font-size:0.85rem; color:#475569;">Hybrid Vehicle Diagnostics, Repair &amp; Spare Parts</p>
+                                <p style="font-size:0.85rem; font-weight:700;">Tel: ${SHOP_TEL}</p>
+                            </div>
+                            <div style="text-align:right;">
+                                <div class="a4-doc-badge">TAX / SERVICE INVOICE</div>
+                                <div style="margin-top:6px; font-weight:800; font-size:1.05rem;">${escapeHtml(inv.invNo)}</div>
+                                <div style="font-size:0.84rem;">Date: ${escapeHtml(inv.date)}${inv.jobRef ? ` • Job: ${escapeHtml(inv.jobRef)}` : ''}</div>
+                            </div>
                         </div>
-                        <div style="text-align:right;">
-                            <div class="a4-doc-badge">TAX / SERVICE INVOICE</div>
-                            <div style="margin-top:6px; font-weight:800; font-size:1rem;">${escapeHtml(inv.invNo)}</div>
-                            <div style="font-size:0.82rem;">Date: ${escapeHtml(inv.date)}</div>
+
+                        <div class="a4-grid-2">
+                            <div class="a4-box">
+                                <strong style="color:#0f766e;">Bill To:</strong>
+                                <div style="margin-top:3px;"><strong>${escapeHtml(inv.customerName)}</strong></div>
+                                <div>Tel: <strong>${escapeHtml(inv.phone)}</strong></div>
+                            </div>
+                            <div class="a4-box">
+                                <strong style="color:#0f766e;">Vehicle &amp; Payment Info:</strong>
+                                <div style="margin-top:3px;">Vehicle No: <strong>${escapeHtml(inv.vehicleNo)}</strong></div>
+                                <div>Model: ${escapeHtml(inv.vehicleModel || '-')} | Payment: <strong>${escapeHtml(inv.payMethod)}</strong></div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="a4-grid-2">
-                        <div class="a4-box">
-                            <strong>Bill To:</strong>
-                            <div>${escapeHtml(inv.customerName)}</div>
-                            <div>Tel: ${escapeHtml(inv.phone)}</div>
+                    <div class="a4-middle-section">
+                        <div class="a4-table-wrap">
+                            <table class="a4-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:6%;">#</th>
+                                        <th style="width:48%;">Item / Spare Part / Service Description</th>
+                                        <th style="width:10%;">Qty</th>
+                                        <th style="width:18%;">Unit Price (Rs.)</th>
+                                        <th style="width:18%;">Amount (Rs.)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${items.map((it, idx) => `
+                                        <tr>
+                                            <td>${idx + 1}</td>
+                                            <td>${escapeHtml(it.desc)}</td>
+                                            <td>${it.qty}</td>
+                                            <td>${Number(it.price).toLocaleString()}</td>
+                                            <td><strong>${Number(it.total).toLocaleString()}</strong></td>
+                                        </tr>
+                                    `).join('')}
+                                    ${fillerRowsHtml}
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="a4-box">
-                            <strong>Vehicle Info:</strong>
-                            <div>Vehicle No: <strong>${escapeHtml(inv.vehicleNo)}</strong></div>
-                            <div>Model: ${escapeHtml(inv.vehicleModel || '-')} | Payment: ${escapeHtml(inv.payMethod)}</div>
+
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-top:8px;">
+                            <div class="a4-box" style="flex:1; font-size:0.84rem;">
+                                <strong style="color:#0f766e;">Payment &amp; Warranty Notes:</strong>
+                                <div style="margin-top:4px;">• Goods once sold / fitted will not be taken back unless covered under manufacturer/workshop warranty.</div>
+                                <div>• Please retain this original invoice for warranty claims.</div>
+                            </div>
+                            <div style="width:295px; font-size:0.94rem;">
+                                <div style="display:flex; justify-content:space-between; padding:5px 0;"><span>Subtotal:</span><strong>${formatCurrency(inv.subtotal)}</strong></div>
+                                <div style="display:flex; justify-content:space-between; padding:5px 0;"><span>Discount:</span><span>${formatCurrency(inv.discount || 0)}</span></div>
+                                <div style="display:flex; justify-content:space-between; padding:6px 0; border-top:1px solid #cbd5e1;"><span>Grand Total:</span><strong>${formatCurrency(inv.grandTotal)}</strong></div>
+                                <div style="display:flex; justify-content:space-between; padding:5px 0;"><span>Advance / Paid:</span><span>${formatCurrency(inv.advance || 0)}</span></div>
+                                <div style="display:flex; justify-content:space-between; padding:8px 10px; background:#f0fdfa; border:1px solid #99f6e4; border-radius:6px; font-size:1.05rem;"><span>Balance Due:</span><strong>${formatCurrency(inv.balance)}</strong></div>
+                            </div>
                         </div>
                     </div>
 
-                    <table class="a4-table">
-                        <thead>
-                            <tr><th>#</th><th>Description</th><th>Qty</th><th>Unit Price (Rs.)</th><th>Amount (Rs.)</th></tr>
-                        </thead>
-                        <tbody>
-                            ${(inv.items || []).map((it, idx) => `
-                                <tr>
-                                    <td>${idx + 1}</td>
-                                    <td>${escapeHtml(it.desc)}</td>
-                                    <td>${it.qty}</td>
-                                    <td>${Number(it.price).toLocaleString()}</td>
-                                    <td><strong>${Number(it.total).toLocaleString()}</strong></td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-
-                    <div style="margin-left:auto; width:270px; font-size:0.9rem;">
-                        <div style="display:flex; justify-content:space-between; padding:4px 0;"><span>Subtotal:</span><strong>${formatCurrency(inv.subtotal)}</strong></div>
-                        <div style="display:flex; justify-content:space-between; padding:4px 0;"><span>Discount:</span><span>${formatCurrency(inv.discount || 0)}</span></div>
-                        <div style="display:flex; justify-content:space-between; padding:5px 0; border-top:1px solid #cbd5e1;"><span>Grand Total:</span><strong>${formatCurrency(inv.grandTotal)}</strong></div>
-                        <div style="display:flex; justify-content:space-between; padding:4px 0;"><span>Advance / Paid:</span><span>${formatCurrency(inv.advance || 0)}</span></div>
-                        <div style="display:flex; justify-content:space-between; padding:6px 8px; background:#f0fdfa; border:1px solid #99f6e4; border-radius:6px; font-size:1rem;"><span>Balance Due:</span><strong>${formatCurrency(inv.balance)}</strong></div>
-                    </div>
-
-                    <div class="a4-signatures">
-                        <div class="sig-line">Customer Signature</div>
-                        <div class="sig-line">Authorized Signature (${SHOP_NAME})</div>
+                    <div class="a4-bottom-section">
+                        <div class="a4-terms-box" style="text-align:center;">
+                            Thank you for choosing <strong>${SHOP_NAME}</strong> — Your Trusted Hybrid Vehicle Care Partner!
+                        </div>
+                        <div class="a4-signatures">
+                            <div class="sig-line">Customer Signature</div>
+                            <div class="sig-line">Authorized Signature (${SHOP_NAME})</div>
+                        </div>
                     </div>
                 </div>
             `;
@@ -4720,66 +5112,95 @@
     function openA4Quotation(quoId) {
         const quo = quotations.find(q => Number(q.id) === Number(quoId));
         if (!quo) return;
-        setDynamicPrintPageSize('A4', '10mm');
+        setDynamicPrintPageSize('A4 portrait', '8mm');
+
+        const items = Array.isArray(quo.items) ? quo.items : [];
+        const minQuoRows = 9;
+        const fillerRowCount = Math.max(0, minQuoRows - items.length);
+        const fillerRowsHtml = Array.from({ length: fillerRowCount }).map(() =>
+            `<tr class="a4-filler-row"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>`
+        ).join('');
 
         const area = getEl('printableArea');
         if (area) {
             area.innerHTML = `
                 <div class="a4-sheet">
-                    <div class="a4-header">
-                        <div>
-                            <h2 style="color:#0f766e; font-size:1.45rem;">⚡ ${SHOP_NAME}</h2>
-                            <p style="font-size:0.84rem; color:#475569;">Hybrid Vehicle Diagnostics, Repair &amp; Spare Parts</p>
-                            <p style="font-size:0.84rem; font-weight:700;">Tel: ${SHOP_TEL}</p>
+                    <div class="a4-top-section">
+                        <div class="a4-header">
+                            <div>
+                                <h2 style="color:#0f766e; font-size:1.5rem;">⚡ ${SHOP_NAME}</h2>
+                                <p style="font-size:0.85rem; color:#475569;">Hybrid Vehicle Diagnostics, Repair &amp; Spare Parts</p>
+                                <p style="font-size:0.85rem; font-weight:700;">Tel: ${SHOP_TEL}</p>
+                            </div>
+                            <div style="text-align:right;">
+                                <div class="a4-doc-badge" style="background:#0284c7;">ESTIMATE / QUOTATION</div>
+                                <div style="margin-top:6px; font-weight:800; font-size:1.05rem;">${escapeHtml(quo.quoNo)}</div>
+                                <div style="font-size:0.84rem;">Date: ${escapeHtml(quo.date)} (Valid: ${quo.validDays} Days)</div>
+                            </div>
                         </div>
-                        <div style="text-align:right;">
-                            <div class="a4-doc-badge" style="background:#0284c7;">REPAIR QUOTATION</div>
-                            <div style="margin-top:6px; font-weight:800; font-size:1rem;">${escapeHtml(quo.quoNo)}</div>
-                            <div style="font-size:0.82rem;">Date: ${escapeHtml(quo.date)} (Valid: ${quo.validDays} Days)</div>
+
+                        <div class="a4-grid-2">
+                            <div class="a4-box">
+                                <strong style="color:#0284c7;">Quotation For:</strong>
+                                <div style="margin-top:3px;"><strong>${escapeHtml(quo.customerName)}</strong></div>
+                                <div>Tel: <strong>${escapeHtml(quo.phone)}</strong></div>
+                            </div>
+                            <div class="a4-box">
+                                <strong style="color:#0284c7;">Vehicle Details:</strong>
+                                <div style="margin-top:3px;">Vehicle No: <strong>${escapeHtml(quo.vehicleNo)}</strong></div>
+                                <div>Brand / Model: ${escapeHtml(quo.vehicleModel || '-')}</div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="a4-grid-2">
-                        <div class="a4-box">
-                            <strong>Quotation For:</strong>
-                            <div>${escapeHtml(quo.customerName)}</div>
-                            <div>Tel: ${escapeHtml(quo.phone)}</div>
+                    <div class="a4-middle-section">
+                        <div class="a4-table-wrap">
+                            <table class="a4-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:6%;">#</th>
+                                        <th style="width:48%;">Estimated Part / Repair Description</th>
+                                        <th style="width:10%;">Qty</th>
+                                        <th style="width:18%;">Unit Price (Rs.)</th>
+                                        <th style="width:18%;">Amount (Rs.)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${items.map((it, idx) => `
+                                        <tr>
+                                            <td>${idx + 1}</td>
+                                            <td>${escapeHtml(it.desc)}</td>
+                                            <td>${it.qty}</td>
+                                            <td>${Number(it.price).toLocaleString()}</td>
+                                            <td><strong>${Number(it.total).toLocaleString()}</strong></td>
+                                        </tr>
+                                    `).join('')}
+                                    ${fillerRowsHtml}
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="a4-box">
-                            <strong>Vehicle Details:</strong>
-                            <div>Vehicle No: <strong>${escapeHtml(quo.vehicleNo)}</strong></div>
-                            <div>Brand / Model: ${escapeHtml(quo.vehicleModel || '-')}</div>
+
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-top:8px;">
+                            <div class="a4-box" style="flex:1; font-size:0.84rem; min-height:85px;">
+                                <strong style="color:#0284c7;">Estimate Notes &amp; Terms:</strong>
+                                <div style="white-space:pre-line; margin-top:4px;">${escapeHtml(quo.notes || 'Prices are subject to spare parts availability at the time of job confirmation. Additional hidden faults discovered during dismantling will be notified prior to repair.')}</div>
+                            </div>
+                            <div style="width:295px; font-size:0.94rem;">
+                                <div style="display:flex; justify-content:space-between; padding:5px 0;"><span>Subtotal:</span><strong>${formatCurrency(quo.subtotal)}</strong></div>
+                                <div style="display:flex; justify-content:space-between; padding:5px 0;"><span>Discount:</span><span>${formatCurrency(quo.discount || 0)}</span></div>
+                                <div style="display:flex; justify-content:space-between; padding:8px 10px; background:#eff6ff; border:1px solid #bfdbfe; border-radius:6px; font-size:1.05rem;"><span>Estimated Total:</span><strong>${formatCurrency(quo.grandTotal)}</strong></div>
+                            </div>
                         </div>
                     </div>
 
-                    <table class="a4-table">
-                        <thead>
-                            <tr><th>#</th><th>Estimated Part / Repair Description</th><th>Qty</th><th>Unit Price (Rs.)</th><th>Amount (Rs.)</th></tr>
-                        </thead>
-                        <tbody>
-                            ${(quo.items || []).map((it, idx) => `
-                                <tr>
-                                    <td>${idx + 1}</td>
-                                    <td>${escapeHtml(it.desc)}</td>
-                                    <td>${it.qty}</td>
-                                    <td>${Number(it.price).toLocaleString()}</td>
-                                    <td><strong>${Number(it.total).toLocaleString()}</strong></td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-
-                    <div style="margin-left:auto; width:270px; font-size:0.9rem;">
-                        <div style="display:flex; justify-content:space-between; padding:4px 0;"><span>Subtotal:</span><strong>${formatCurrency(quo.subtotal)}</strong></div>
-                        <div style="display:flex; justify-content:space-between; padding:4px 0;"><span>Discount:</span><span>${formatCurrency(quo.discount || 0)}</span></div>
-                        <div style="display:flex; justify-content:space-between; padding:6px 8px; background:#eff6ff; border:1px solid #bfdbfe; border-radius:6px; font-size:1rem;"><span>Estimated Total:</span><strong>${formatCurrency(quo.grandTotal)}</strong></div>
-                    </div>
-
-                    ${quo.notes ? `<div class="a4-box" style="margin-top:12px;"><strong>Notes &amp; Terms:</strong><div style="white-space:pre-line; margin-top:3px;">${escapeHtml(quo.notes)}</div></div>` : ''}
-
-                    <div class="a4-signatures">
-                        <div class="sig-line">Customer Acceptance</div>
-                        <div class="sig-line">Prepared By (${SHOP_NAME})</div>
+                    <div class="a4-bottom-section">
+                        <div class="a4-terms-box">
+                            <strong>Quotation Validity:</strong> This repair estimate is valid for <strong>${quo.validDays} days</strong> from ${escapeHtml(quo.date)}. Please sign below to authorize commencement of repairs.
+                        </div>
+                        <div class="a4-signatures">
+                            <div class="sig-line">Customer Acceptance</div>
+                            <div class="sig-line">Prepared By (${SHOP_NAME})</div>
+                        </div>
                     </div>
                 </div>
             `;
@@ -4871,110 +5292,93 @@
             const usedParts = Array.isArray(j.usedParts) ? j.usedParts.map(normalizeUsedPartEntry) : [];
             const jPartsRev = getPartsTotalAmount(usedParts);
             const jPartsCost = usedParts.reduce((sum, p) => {
-                const qty = Number(p.qty) || 1;
-                return sum + (qty * getUnitCostForPart(p));
+                const uCost = getUnitCostForPart(p);
+                return sum + (uCost * (Number(p.qty) || 1));
             }, 0);
 
-            const explicitLabor = Number(j.laborCharge);
-            const jTotal = Number(j.totalAmount) || 0;
-            const jLabor = !Number.isNaN(explicitLabor) && explicitLabor >= 0
-                ? explicitLabor
-                : Math.max(0, jTotal - jPartsRev);
-            const effectiveSale = jTotal > 0 ? jTotal : (jLabor + jPartsRev);
-            const jProfit = jLabor + (jPartsRev - jPartsCost);
+            const savedLabor = Number(j.laborCharge);
+            const savedTotal = Number(j.totalAmount) || 0;
+            const jLabor = !Number.isNaN(savedLabor) && savedLabor > 0
+                ? savedLabor
+                : Math.max(0, savedTotal - jPartsRev);
+            const jTotalRev = savedTotal > 0 ? savedTotal : (jLabor + jPartsRev);
+            const jNetProfit = jTotalRev - jPartsCost;
 
-            grossSales += effectiveSale;
+            grossSales += jTotalRev;
             laborIncome += jLabor;
             partsSalesRevenue += jPartsRev;
             partsCostTotal += jPartsCost;
 
-            const partsSummaryText = usedParts.length > 0
-                ? usedParts.map(p => `${p.name} (${p.code}) ×${p.qty}`).join(', ')
-                : '-';
-
             rows.push({
                 date: jDate,
-                sourceType: 'Job Card',
                 refNo: code,
-                vehicleNo: formatDisplayVehicleNo(j.vehicleNo),
+                sourceType: 'Job Card',
+                vehicleNo: formatDisplayVehicleNo(j.vehicleNo || '-'),
                 customerName: j.customerName || '-',
-                details: `${j.faultDesc || ''}${usedParts.length > 0 ? ' | Parts: ' + partsSummaryText : ''}`,
-                labor: jLabor,
+                laborAmount: jLabor,
                 partsRevenue: jPartsRev,
                 partsCost: jPartsCost,
-                saleAmount: effectiveSale,
-                netProfit: jProfit
+                totalRevenue: jTotalRev,
+                netProfit: jNetProfit
             });
         });
 
         matchedInvoices.forEach(inv => {
+            const refJob = String(inv.jobRef || '').trim().toUpperCase();
+            if (refJob && jobCodesInRange.has(refJob)) {
+                return;
+            }
             const invDate = normalizeDateStr(inv.date) || '-';
-            const jobRefCode = String(inv.jobRef || '').trim().toUpperCase();
-            const linkedToMatchedJob = Boolean(jobRefCode && jobCodesInRange.has(jobRefCode));
-
-            const invItems = Array.isArray(inv.items) ? inv.items : [];
+            const items = Array.isArray(inv.items) ? inv.items : [];
+            const invTotalRev = Number(inv.grandTotal) || 0;
             let invPartsRev = 0;
             let invPartsCost = 0;
-            let invLabor = 0;
 
-            invItems.forEach(it => {
-                const qty = Math.max(1, Number(it.qty) || 1);
-                const lineTotal = Number(it.total) > 0 ? Number(it.total) : (qty * (Number(it.price) || 0));
-                const descLower = String(it.desc || '').toLowerCase();
-
-                if (it.stockId || descLower.includes('(stk-') || descLower.includes('part') || descLower.includes('battery') || descLower.includes('filter')) {
-                    invPartsRev += lineTotal;
-                    const unitCost = it.stockId
-                        ? getUnitCostForPart({ stockId: it.stockId, code: it.code || '' })
-                        : 0;
-                    invPartsCost += (qty * unitCost);
-                } else if (descLower.includes('labor') || descLower.includes('service')) {
-                    invLabor += lineTotal;
+            items.forEach(it => {
+                if (it.stockId) {
+                    const lineRev = Number(it.total) || ((Number(it.qty) || 1) * (Number(it.price) || 0));
+                    const uCost = getUnitCostForPart(it);
+                    invPartsRev += lineRev;
+                    invPartsCost += uCost * (Number(it.qty) || 1);
                 }
             });
 
-            const invGrandTotal = Number(inv.grandTotal) || 0;
-            const invProfit = invLabor + (invPartsRev - invPartsCost);
+            const invLabor = Math.max(0, invTotalRev - invPartsRev);
+            const invNetProfit = invTotalRev - invPartsCost;
 
-            if (!linkedToMatchedJob) {
-                grossSales += invGrandTotal;
-                laborIncome += invLabor;
-                partsSalesRevenue += invPartsRev;
-                partsCostTotal += invPartsCost;
-            }
+            grossSales += invTotalRev;
+            laborIncome += invLabor;
+            partsSalesRevenue += invPartsRev;
+            partsCostTotal += invPartsCost;
 
             rows.push({
                 date: invDate,
-                sourceType: linkedToMatchedJob ? 'Invoice (Job Linked)' : 'Standalone Invoice',
-                refNo: String(inv.invNo || inv.id || '').trim(),
-                vehicleNo: formatDisplayVehicleNo(inv.vehicleNo),
+                refNo: String(inv.invNo || 'INV'),
+                sourceType: 'Direct Invoice',
+                vehicleNo: formatDisplayVehicleNo(inv.vehicleNo || '-'),
                 customerName: inv.customerName || '-',
-                details: invItems.map(it => `${it.desc} ×${it.qty}`).join(', ') || '-',
-                labor: linkedToMatchedJob ? 0 : invLabor,
-                partsRevenue: linkedToMatchedJob ? 0 : invPartsRev,
-                partsCost: linkedToMatchedJob ? 0 : invPartsCost,
-                saleAmount: linkedToMatchedJob ? 0 : invGrandTotal,
-                netProfit: linkedToMatchedJob ? 0 : invProfit,
-                displaySale: invGrandTotal
+                laborAmount: invLabor,
+                partsRevenue: invPartsRev,
+                partsCost: invPartsCost,
+                totalRevenue: invTotalRev,
+                netProfit: invNetProfit
             });
         });
 
-        rows.sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
+        rows.sort((a, b) => String(b.date).localeCompare(String(a.date)));
 
-        const partsProfit = partsSalesRevenue - partsCostTotal;
-        const netFullProfit = laborIncome + partsProfit;
+        const netProfit = grossSales - partsCostTotal;
+        const marginPct = grossSales > 0 ? ((netProfit / grossSales) * 100) : 0;
 
         return {
             fromDate,
             toDate,
-            jobCount: matchedJobs.length,
-            invoiceCount: matchedInvoices.length,
             grossSales,
             laborIncome,
             partsSalesRevenue,
             partsCostTotal,
-            partsProfit,
-            netFullProfit,
+            netProfit,
+            marginPct,
             rows
         };
     }
@@ -4983,56 +5387,38 @@
         const container = getEl('profitReportContainer');
         if (!container) return;
 
-        const fromDate = normalizeDateStr(getVal('profitFromDate', ''));
-        const toDate = normalizeDateStr(getVal('profitToDate', ''));
-
+        const fromDate = String(getVal('profitFromDate', '') || '').trim();
+        const toDate = String(getVal('profitToDate', '') || '').trim();
         const rangeLabel = getEl('profitActiveRangeLabel');
-        if (rangeLabel) {
-            if (fromDate && toDate) {
-                rangeLabel.textContent = `Showing: ${fromDate} → ${toDate}`;
-            } else if (fromDate) {
-                rangeLabel.textContent = `Showing: From ${fromDate}`;
-            } else if (toDate) {
-                rangeLabel.textContent = `Showing: Up to ${toDate}`;
-            } else {
-                rangeLabel.textContent = 'Showing: All Dates';
-            }
+
+        let labelText = 'Showing: All Dates';
+        if (fromDate && toDate) {
+            labelText = fromDate === toDate ? `Showing: ${fromDate}` : `Showing: ${fromDate} to ${toDate}`;
+        } else if (fromDate) {
+            labelText = `Showing: From ${fromDate}`;
+        } else if (toDate) {
+            labelText = `Showing: Up to ${toDate}`;
         }
+        if (rangeLabel) rangeLabel.textContent = labelText;
 
         const data = computeFullProfitData(fromDate, toDate);
 
         container.innerHTML = `
             <div class="stats-bar" style="margin-bottom:16px;">
                 <div class="stat-box">
-                    <div class="stat-info">
-                        <span>Gross Sales / Revenue</span>
-                        <h2 style="font-size:1.25rem;">${formatCurrency(data.grossSales)}</h2>
-                        <small style="color:#64748b;">Jobs: ${data.jobCount} | Invoices: ${data.invoiceCount}</small>
-                    </div>
+                    <div class="stat-info"><span>Total Gross Revenue</span><h2>${formatCurrency(data.grossSales)}</h2></div>
                     <div class="stat-emoji">💵</div>
                 </div>
                 <div class="stat-box repair">
-                    <div class="stat-info">
-                        <span>Labor Income</span>
-                        <h2 style="font-size:1.25rem; color:#0369a1;">${formatCurrency(data.laborIncome)}</h2>
-                        <small style="color:#64748b;">Service &amp; Repair Labor</small>
-                    </div>
+                    <div class="stat-info"><span>Labor Charge Revenue</span><h2>${formatCurrency(data.laborIncome)}</h2></div>
                     <div class="stat-emoji">🛠️</div>
                 </div>
                 <div class="stat-box inspect">
-                    <div class="stat-info">
-                        <span>Parts Sales vs Cost</span>
-                        <h2 style="font-size:1.15rem; color:#b45309;">Profit: ${formatCurrency(data.partsProfit)}</h2>
-                        <small style="color:#64748b;">Sell: ${formatCurrency(data.partsSalesRevenue)} | Cost: ${formatCurrency(data.partsCostTotal)}</small>
-                    </div>
+                    <div class="stat-info"><span>Parts Sales / Cost</span><h2 style="font-size:1.1rem;">Rev: ${formatCurrency(data.partsSalesRevenue)}<br><small style="color:#dc2626;">Cost: ${formatCurrency(data.partsCostTotal)}</small></h2></div>
                     <div class="stat-emoji">📦</div>
                 </div>
                 <div class="stat-box ready">
-                    <div class="stat-info">
-                        <span>Net Full Profit</span>
-                        <h2 style="font-size:1.3rem; color:${data.netFullProfit >= 0 ? '#16a34a' : '#dc2626'};">${formatCurrency(data.netFullProfit)}</h2>
-                        <small style="color:#64748b;">Labor + (Parts Sell − Cost)</small>
-                    </div>
+                    <div class="stat-info"><span>Net Profit (${data.marginPct.toFixed(1)}%)</span><h2 style="color:${data.netProfit >= 0 ? '#16a34a' : '#dc2626'};">${formatCurrency(data.netProfit)}</h2></div>
                     <div class="stat-emoji">📈</div>
                 </div>
             </div>
@@ -5042,35 +5428,30 @@
                     <thead>
                         <tr>
                             <th>Date</th>
-                            <th>Type &amp; Ref</th>
-                            <th>Vehicle / Customer</th>
-                            <th>Details</th>
+                            <th>Ref / Job ID</th>
+                            <th>Vehicle &amp; Customer</th>
                             <th>Labor (Rs.)</th>
-                            <th>Parts Sell (Rs.)</th>
+                            <th>Parts Rev (Rs.)</th>
                             <th>Parts Cost (Rs.)</th>
-                            <th>Sale (Rs.)</th>
+                            <th>Total Bill (Rs.)</th>
                             <th>Net Profit (Rs.)</th>
                         </tr>
                     </thead>
                     <tbody>
                         ${data.rows.length === 0
-                            ? `<tr><td colspan="9" style="text-align:center; color:#64748b; padding:24px;">තෝරාගත් දින පරාසය සඳහා Jobs හෝ Invoices හමු නොවීය.</td></tr>`
-                            : data.rows.map(r => {
-                                const saleShown = r.displaySale !== undefined ? r.displaySale : r.saleAmount;
-                                return `
-                                    <tr>
-                                        <td style="white-space:nowrap;"><strong>${escapeHtml(r.date)}</strong></td>
-                                        <td><span class="pill">${escapeHtml(r.sourceType)}</span><br><strong>${escapeHtml(r.refNo)}</strong></td>
-                                        <td><strong>${escapeHtml(r.vehicleNo)}</strong><br><small>${escapeHtml(r.customerName)}</small></td>
-                                        <td style="max-width:240px;">${escapeHtml(r.details)}</td>
-                                        <td>${Number(r.labor || 0).toLocaleString()}</td>
-                                        <td>${Number(r.partsRevenue || 0).toLocaleString()}</td>
-                                        <td>${Number(r.partsCost || 0).toLocaleString()}</td>
-                                        <td><strong>${Number(saleShown || 0).toLocaleString()}</strong></td>
-                                        <td><strong style="color:${Number(r.netProfit || 0) >= 0 ? '#16a34a' : '#dc2626'};">${Number(r.netProfit || 0).toLocaleString()}</strong></td>
-                                    </tr>
-                                `;
-                            }).join('')
+                            ? `<tr><td colspan="8" style="text-align:center; color:#64748b; padding:24px;">තෝරාගත් දින පරාසය තුළ Job Cards හෝ Invoices හමු නොවීය.</td></tr>`
+                            : data.rows.map(r => `
+                                <tr>
+                                    <td style="white-space:nowrap;">${escapeHtml(r.date)}</td>
+                                    <td><strong>${escapeHtml(r.refNo)}</strong><br><small class="pill">${escapeHtml(r.sourceType)}</small></td>
+                                    <td><strong>${escapeHtml(r.vehicleNo)}</strong><br><small>${escapeHtml(r.customerName)}</small></td>
+                                    <td>${formatCurrency(r.laborAmount)}</td>
+                                    <td>${formatCurrency(r.partsRevenue)}</td>
+                                    <td style="color:#dc2626;">${formatCurrency(r.partsCost)}</td>
+                                    <td><strong>${formatCurrency(r.totalRevenue)}</strong></td>
+                                    <td><strong style="color:${r.netProfit >= 0 ? '#16a34a' : '#dc2626'};">${formatCurrency(r.netProfit)}</strong></td>
+                                </tr>
+                            `).join('')
                         }
                     </tbody>
                 </table>
@@ -5079,78 +5460,101 @@
     }
 
     function openA4ProfitReport() {
-        const fromDate = normalizeDateStr(getVal('profitFromDate', ''));
-        const toDate = normalizeDateStr(getVal('profitToDate', ''));
+        const fromDate = String(getVal('profitFromDate', '') || '').trim();
+        const toDate = String(getVal('profitToDate', '') || '').trim();
         const data = computeFullProfitData(fromDate, toDate);
-        const periodText = (fromDate || toDate)
-            ? `${fromDate || 'Beginning'} to ${toDate || 'Present'}`
-            : 'All Dates';
+        setDynamicPrintPageSize('A4 portrait', '8mm');
 
-        setDynamicPrintPageSize('A4', '10mm');
+        let periodDisplay = 'All Dates (Complete Workshop History)';
+        if (fromDate && toDate) {
+            periodDisplay = fromDate === toDate ? `Date: ${fromDate}` : `Period: ${fromDate} to ${toDate}`;
+        } else if (fromDate) {
+            periodDisplay = `From Date: ${fromDate}`;
+        } else if (toDate) {
+            periodDisplay = `Up To Date: ${toDate}`;
+        }
+
+        const minProfitRows = 10;
+        const fillerCount = Math.max(0, minProfitRows - data.rows.length);
+        const fillerHtml = Array.from({ length: fillerCount }).map(() =>
+            `<tr class="a4-filler-row"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>`
+        ).join('');
+
         const area = getEl('printableArea');
         if (area) {
             area.innerHTML = `
                 <div class="a4-sheet">
-                    <div class="a4-header">
-                        <div>
-                            <h2 style="color:#0f766e; font-size:1.45rem;">⚡ ${SHOP_NAME}</h2>
-                            <p style="font-size:0.84rem; color:#475569;">Hybrid Vehicle Diagnostics, Repair &amp; Spare Parts</p>
-                            <p style="font-size:0.84rem; font-weight:700;">Tel: ${SHOP_TEL}</p>
+                    <div class="a4-top-section">
+                        <div class="a4-header">
+                            <div>
+                                <h2 style="color:#0f766e; font-size:1.5rem;">⚡ ${SHOP_NAME}</h2>
+                                <p style="font-size:0.85rem; color:#475569;">Hybrid Vehicle Diagnostics, Repair &amp; Spare Parts</p>
+                                <p style="font-size:0.85rem; font-weight:700;">Tel: ${SHOP_TEL}</p>
+                            </div>
+                            <div style="text-align:right;">
+                                <div class="a4-doc-badge">FINANCIAL PROFIT &amp; LOSS REPORT</div>
+                                <div style="margin-top:6px; font-weight:800; font-size:0.95rem;">${escapeHtml(periodDisplay)}</div>
+                                <div style="font-size:0.82rem; color:#475569;">Generated: ${new Date().toLocaleDateString('en-CA')}</div>
+                            </div>
                         </div>
-                        <div style="text-align:right;">
-                            <div class="a4-doc-badge">FULL PROFIT REPORT</div>
-                            <div style="margin-top:6px; font-weight:800; font-size:0.95rem;">Period: ${escapeHtml(periodText)}</div>
-                            <div style="font-size:0.8rem; color:#475569;">Generated: ${new Date().toLocaleDateString('en-CA')}</div>
+
+                        <div class="a4-grid-2">
+                            <div class="a4-box">
+                                <strong style="color:#0f766e;">Revenue Breakdown</strong>
+                                <div style="margin-top:3px;">Total Labor Charge Income: <strong>${formatCurrency(data.laborIncome)}</strong></div>
+                                <div>Total Spare Parts Sales: <strong>${formatCurrency(data.partsSalesRevenue)}</strong></div>
+                                <div>Total Gross Revenue: <strong>${formatCurrency(data.grossSales)}</strong></div>
+                            </div>
+                            <div class="a4-box" style="background:#f0fdfa; border-color:#99f6e4;">
+                                <strong style="color:#0f766e;">Cost &amp; Net Profit Summary</strong>
+                                <div style="margin-top:3px;">Total Spare Parts Cost: <strong style="color:#dc2626;">${formatCurrency(data.partsCostTotal)}</strong></div>
+                                <div>Total Transactions Count: <strong>${data.rows.length}</strong></div>
+                                <div style="font-size:1.02rem; color:#0f766e;">Net Profit (${data.marginPct.toFixed(1)}%): <strong>${formatCurrency(data.netProfit)}</strong></div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="a4-grid-2">
-                        <div class="a4-box">
-                            <strong style="color:#0f766e;">Revenue &amp; Labor Summary</strong>
-                            <div>Gross Sales / Revenue: <strong>${formatCurrency(data.grossSales)}</strong></div>
-                            <div>Labor Income: <strong>${formatCurrency(data.laborIncome)}</strong></div>
-                            <div>Records Matched: <strong>${data.jobCount} Jobs, ${data.invoiceCount} Invoices</strong></div>
-                        </div>
-                        <div class="a4-box">
-                            <strong style="color:#0f766e;">Parts Cost &amp; Net Profit Summary</strong>
-                            <div>Parts Sales Revenue: <strong>${formatCurrency(data.partsSalesRevenue)}</strong></div>
-                            <div>Parts Cost (COGS): <strong>${formatCurrency(data.partsCostTotal)}</strong> | Parts Profit: <strong>${formatCurrency(data.partsProfit)}</strong></div>
-                            <div style="margin-top:4px; font-size:1rem; color:#0f766e;">Net Full Profit: <strong>${formatCurrency(data.netFullProfit)}</strong></div>
+                    <div class="a4-middle-section">
+                        <strong style="display:block; margin-bottom:4px; color:#0f172a;">Itemized Job &amp; Invoice Profit Statement:</strong>
+                        <div class="a4-table-wrap">
+                            <table class="a4-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:12%;">Date</th>
+                                        <th style="width:13%;">Ref / Job</th>
+                                        <th style="width:23%;">Vehicle &amp; Customer</th>
+                                        <th style="width:13%;">Labor (Rs.)</th>
+                                        <th style="width:13%;">Parts Rev</th>
+                                        <th style="width:13%;">Parts Cost</th>
+                                        <th style="width:13%;">Net Profit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${data.rows.map(r => `
+                                        <tr>
+                                            <td>${escapeHtml(r.date)}</td>
+                                            <td><strong>${escapeHtml(r.refNo)}</strong></td>
+                                            <td><strong>${escapeHtml(r.vehicleNo)}</strong><br><small>${escapeHtml(r.customerName)}</small></td>
+                                            <td>${Number(r.laborAmount).toLocaleString()}</td>
+                                            <td>${Number(r.partsRevenue).toLocaleString()}</td>
+                                            <td>${Number(r.partsCost).toLocaleString()}</td>
+                                            <td><strong>${Number(r.netProfit).toLocaleString()}</strong></td>
+                                        </tr>
+                                    `).join('')}
+                                    ${fillerHtml}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
-                    <table class="a4-table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Date</th>
-                                <th>Type / Ref</th>
-                                <th>Vehicle / Customer</th>
-                                <th>Labor</th>
-                                <th>Parts Sell</th>
-                                <th>Parts Cost</th>
-                                <th>Net Profit</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${data.rows.map((r, idx) => `
-                                <tr>
-                                    <td>${idx + 1}</td>
-                                    <td>${escapeHtml(r.date)}</td>
-                                    <td>${escapeHtml(r.sourceType)}<br><strong>${escapeHtml(r.refNo)}</strong></td>
-                                    <td><strong>${escapeHtml(r.vehicleNo)}</strong><br><small>${escapeHtml(r.customerName)}</small></td>
-                                    <td>${Number(r.labor || 0).toLocaleString()}</td>
-                                    <td>${Number(r.partsRevenue || 0).toLocaleString()}</td>
-                                    <td>${Number(r.partsCost || 0).toLocaleString()}</td>
-                                    <td><strong>${Number(r.netProfit || 0).toLocaleString()}</strong></td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-
-                    <div class="a4-signatures">
-                        <div class="sig-line">Prepared By</div>
-                        <div class="sig-line">Approved By (${SHOP_NAME})</div>
+                    <div class="a4-bottom-section">
+                        <div class="a4-terms-box">
+                            <strong>Accounting Note:</strong> Net Profit is calculated as <em>(Labor Charge Revenue + Spare Parts Revenue) − Spare Parts Cost</em> for all completed and active records within the selected reporting period.
+                        </div>
+                        <div class="a4-signatures">
+                            <div class="sig-line">Prepared By (Accounts / Admin)</div>
+                            <div class="sig-line">Approved By Proprietor (${SHOP_NAME})</div>
+                        </div>
                     </div>
                 </div>
             `;
@@ -5159,165 +5563,186 @@
     }
 
     // =========================================================================
-    // CUSTOMER LIVE TRACKING VIEW (?job=...)
+    // CUSTOMER LIVE TRACKING VIEW (?job=SSH-1001) — CLOUD + LOCAL LOOKUP
     // =========================================================================
-    function checkCustomerMode() {
+    async function refreshCustomerFromCloud() {
+        showToast('🔄 Fetching latest status from Firebase...');
+        await pullAllViaRest(true);
         const params = new URLSearchParams(window.location.search);
         const jobParam = params.get('job');
-        if (!jobParam) {
-            getEl('staffView')?.classList.remove('hidden');
-            getEl('customerView')?.classList.add('hidden');
-            getEl('staffTopActions')?.style.setProperty('display', 'inline-flex');
-            return;
-        }
-
-        getEl('staffView')?.classList.add('hidden');
-        getEl('customerView')?.classList.remove('hidden');
-        getEl('staffTopActions')?.style.setProperty('display', 'none');
-        setVal('customerLookupInput', jobParam);
-        renderCustomerTrackingJob(jobParam, jobParam);
+        const currentInput = getVal('customerLookupInput', '').trim() || jobParam || '';
+        renderCustomerTrackingJob(currentInput, jobParam);
     }
 
     function lookupCustomerVehicle() {
-        const q = getVal('customerLookupInput', '').trim();
-        if (!q) {
-            showToast('⚠️ Job ID හෝ Vehicle No ඇතුළත් කරන්න.');
+        const query = getVal('customerLookupInput', '').trim();
+        if (!query) {
+            showToast('⚠️ Job ID (SSH-1001) හෝ Vehicle No ඇතුළත් කරන්න.');
             return;
         }
-        renderCustomerTrackingJob(q, null);
+        renderCustomerTrackingJob(query);
     }
 
-    function renderCustomerTrackingJob(query, explicitJobCode = null) {
-        const multiBox = getEl('customerMultiJobSelector');
-        const q = String(query || '').trim();
-        const qLower = q.toLowerCase();
-        const qNormVeh = normalizeVehicleNo(q);
+    async function renderCustomerTrackingJob(queryStr, explicitJobCode = null) {
+        const targetRaw = String(explicitJobCode || queryStr || '').trim();
+        const targetUpper = targetRaw.toUpperCase();
+        const normVeh = normalizeVehicleKey(targetRaw);
 
-        let matches = [];
-        if (explicitJobCode) {
-            const exact = findJobByCodeOrId(explicitJobCode);
-            if (exact) {
-                const sameVeh = jobs.filter(j => normalizeVehicleNo(j.vehicleNo) === normalizeVehicleNo(exact.vehicleNo));
-                matches = sameVeh.length > 1 ? sameVeh : [exact];
-            }
-        }
+        // If local jobs array doesn't have it yet, fetch live from Firebase REST API immediately
+        let directMatches = jobs.filter(j =>
+            String(j.jobCode || '').trim().toUpperCase() === targetUpper ||
+            String(j.id || '').trim().toUpperCase() === targetUpper
+        );
 
-        if (matches.length === 0) {
-            const codeMatches = jobs.filter(j => String(j.jobCode || '').trim().toLowerCase() === qLower);
-            if (codeMatches.length > 0) {
-                const first = codeMatches[0];
-                const sameVeh = jobs.filter(j => normalizeVehicleNo(j.vehicleNo) === normalizeVehicleNo(first.vehicleNo));
-                matches = sameVeh.length > 1 ? sameVeh : codeMatches;
-            } else if (qNormVeh) {
-                matches = jobs.filter(j => normalizeVehicleNo(j.vehicleNo) === qNormVeh);
-                if (matches.length === 0) {
-                    matches = jobs.filter(j => normalizeVehicleNo(j.vehicleNo).includes(qNormVeh));
+        if (directMatches.length === 0 && targetUpper) {
+            try {
+                const singleJob = await restGetNode(`ss_hybrid_care_jobs/${encodeURIComponent(targetUpper)}`);
+                if (singleJob && typeof singleJob === 'object') {
+                    directMatches = [singleJob];
+                } else {
+                    await pullAllViaRest(true);
+                    directMatches = jobs.filter(j =>
+                        String(j.jobCode || '').trim().toUpperCase() === targetUpper ||
+                        String(j.id || '').trim().toUpperCase() === targetUpper
+                    );
                 }
-            }
+            } catch (e) {}
         }
 
-        let job = null;
-        if (explicitJobCode) {
-            job = findJobByCodeOrId(explicitJobCode);
-        } else {
-            const directCode = jobs.find(j => String(j.jobCode || '').trim().toLowerCase() === qLower);
-            job = directCode || matches[0] || null;
+        let matchedList = directMatches;
+        if (matchedList.length === 0 && normVeh) {
+            matchedList = jobs.filter(j => normalizeVehicleKey(j.vehicleNo) === normVeh);
         }
 
-        if (multiBox) {
-            if (matches.length > 1) {
-                multiBox.classList.remove('hidden');
-                multiBox.innerHTML = `
-                    <div style="font-size:0.8rem; font-weight:700; color:#0f766e; margin-bottom:6px;">
-                        🎫 මෙම වාහනයට Job Cards ${matches.length} ක් ඇත — Job ID එකක් තෝරන්න:
-                    </div>
-                    <div style="display:flex; gap:6px; flex-wrap:wrap;">
-                        ${matches.map(m => {
-                            const mCode = String(m.jobCode || m.id).trim().toUpperCase();
-                            const isSelected = job && String(job.jobCode || job.id).trim().toUpperCase() === mCode;
-                            return `<button type="button" class="btn ${isSelected ? 'btn-primary' : 'btn-light'} btn-sm" onclick="renderCustomerTrackingJob('${escapeHtml(mCode)}', '${escapeHtml(mCode)}')">${escapeHtml(mCode)} • ${escapeHtml(m.createdAt || '')} (${escapeHtml(m.status)})</button>`;
-                        }).join('')}
-                    </div>
-                `;
+        const multiSelBox = getEl('customerMultiJobSelector');
+        if (multiSelBox) {
+            if (matchedList.length > 1) {
+                multiSelBox.classList.remove('hidden');
+                multiSelBox.innerHTML = `<div style="font-size:0.8rem; font-weight:700; color:#0f766e; margin-bottom:6px;">🚘 මෙම වාහනයට Job Cards ${matchedList.length} ක් ඇත — පරීක්ෂා කිරීමට Job ID එකක් තෝරන්න:</div>` +
+                    `<div style="display:flex; gap:6px; flex-wrap:wrap;">` +
+                    matchedList.map(m => {
+                        const c = String(m.jobCode || m.id).trim().toUpperCase();
+                        return `<button type="button" class="btn btn-secondary btn-sm" onclick="renderCustomerTrackingJob('${escapeHtml(c)}', '${escapeHtml(c)}')">${escapeHtml(c)} (${escapeHtml(m.createdAt || '')})</button>`;
+                    }).join('') +
+                    `</div>`;
             } else {
-                multiBox.classList.add('hidden');
-                multiBox.innerHTML = '';
+                multiSelBox.classList.add('hidden');
+                multiSelBox.innerHTML = '';
             }
         }
 
+        const job = matchedList[0];
         if (!job) {
-            const faultEl = getEl('custFaultDesc');
-            if (faultEl) faultEl.textContent = 'වාහනයේ විස්තර පූරණය වෙමින් පවතී හෝ Job ID / Vehicle No හමු නොවීය.';
+            const summaryEl = getEl('custVehicleSummary');
+            if (summaryEl) {
+                summaryEl.innerHTML = `<div style="color:#b91c1c; font-weight:700;">⚠️ "${escapeHtml(targetRaw)}" සඳහා Job Card වාර්තාවක් හමු නොවීය. Job ID (උදා: SSH-1001) හෝ Vehicle No පරීක්ෂා කර "Refresh Live Status" ඔබන්න.</div>`;
+            }
             return;
         }
 
-        const setHtml = (id, html) => { const el = getEl(id); if (el) el.innerHTML = html; };
-        const setText = (id, txt) => { const el = getEl(id); if (el) el.textContent = txt; };
+        const code = String(job.jobCode || job.id).trim().toUpperCase();
+        setVal('customerLookupInput', code);
 
-        setHtml('custBrandLogo', getBrandSvg(job.vehicleBrand));
-        setHtml('custPlateDisplay', formatNumberPlateHtml(job.vehicleNo));
-        setText('custModelDisplay', `${job.vehicleBrand} ${job.vehicleModel || ''} • Job ID: ${job.jobCode} (${job.createdAt || ''})`);
-        setText('custStatusBadge', `${job.jobCode} • ${job.status}`);
+        const logoEl = getEl('custBrandLogo');
+        const plateEl = getEl('custPlateDisplay');
+        const modelEl = getEl('custModelDisplay');
+        const badgeEl = getEl('custStatusBadge');
 
-        getEl('step1')?.classList.toggle('active', true);
-        getEl('step2')?.classList.toggle('active', job.status === 'In Repair' || job.status === 'Ready for Delivery');
-        getEl('step3')?.classList.toggle('active', job.status === 'Ready for Delivery');
+        if (logoEl) logoEl.innerHTML = getBrandSvg(job.vehicleBrand);
+        if (plateEl) plateEl.innerHTML = formatNumberPlateHtml(job.vehicleNo);
+        if (modelEl) modelEl.textContent = `${job.vehicleBrand} ${job.vehicleModel || ''} • Job ID: ${code}`;
+        if (badgeEl) {
+            badgeEl.textContent = job.status;
+            badgeEl.className = 'badge ' + (
+                job.status === 'Ready for Delivery' ? 'b-ready' :
+                job.status === 'In Repair' ? 'b-progress' : 'b-inspect'
+            );
+        }
 
-        setText('custFaultDesc', job.faultDesc || '-');
-        const bal = (Number(job.totalAmount) || 0) - (Number(job.advanceAmount) || 0);
-        setHtml('custVehicleSummary', `
-            <div><strong>Customer:</strong> ${escapeHtml(job.customerName)} (${escapeHtml(job.phone)})</div>
-            <div><strong>Job Date:</strong> ${escapeHtml(job.createdAt || '')} ${job.warrantyDate ? `| <strong>Warranty Until:</strong> ${escapeHtml(job.warrantyDate)}` : ''}</div>
-            <div><strong>Labor Charge:</strong> ${formatCurrency(job.laborCharge || 0)} | <strong>Total Bill:</strong> ${formatCurrency(job.totalAmount || 0)} | <strong>Advance:</strong> ${formatCurrency(job.advanceAmount || 0)} | <strong>Balance:</strong> ${formatCurrency(bal)}</div>
-        `);
+        const s1 = getEl('step1');
+        const s2 = getEl('step2');
+        const s3 = getEl('step3');
+        if (s1) s1.classList.toggle('active', true);
+        if (s2) s2.classList.toggle('active', job.status === 'In Repair' || job.status === 'Ready for Delivery');
+        if (s3) s3.classList.toggle('active', job.status === 'Ready for Delivery');
 
-        setText('custIntakeNote', job.intakeNote || 'වාහනය භාර ගන්නා විට සටහන් තබා ඇත.');
-        setHtml('custIntakeMedia', (job.intakeMedia || []).map(m =>
-            m.type === 'video' ? `<video src="${m.data}" controls></video>` : `<img src="${m.data}" alt="Intake">`
-        ).join(''));
+        const faultEl = getEl('custFaultDesc');
+        if (faultEl) faultEl.textContent = job.faultDesc || '-';
 
-        setText('custInspection', job.inspectionReport || 'පරීක්ෂා කරමින් පවතී.');
-        setText('custReplacedItems', job.repairedItems || 'තවම parts / repair items ඇතුළත් කර නැත.');
-        setHtml('custReplacedPhotos', (job.replacedPhotos || []).map(m =>
-            `<img src="${m.data}" alt="Replaced Part">`
-        ).join(''));
+        const usedParts = Array.isArray(job.usedParts) ? job.usedParts : [];
+        const partsSum = getPartsTotalAmount(usedParts);
+        const laborVal = Number(job.laborCharge) || 0;
+        const balance = (Number(job.totalAmount) || 0) - (Number(job.advanceAmount) || 0);
 
-        const updates = job.progressUpdates || [];
-        setHtml('custTimeline', updates.length === 0
-            ? `<p style="color:#64748b; font-size:0.88rem;">වැඩ කරගෙන යන Photos &amp; Videos ඉක්මනින් මෙහි පළ වනු ඇත.</p>`
-            : updates.map(u => `
-                <div class="timeline-item">
-                    <div class="timeline-date">${escapeHtml(u.date)}</div>
-                    <p style="margin-top:4px;">${escapeHtml(u.note)}</p>
-                    <div class="gallery-grid">
-                        ${(u.media || []).map(m => m.type === 'video' ? `<video src="${m.data}" controls></video>` : `<img src="${m.data}" alt="Progress">`).join('')}
+        const summaryEl = getEl('custVehicleSummary');
+        if (summaryEl) {
+            summaryEl.innerHTML = `
+                <div>👤 Customer: <strong>${escapeHtml(job.customerName)}</strong></div>
+                <div>📅 Date Received: <strong>${escapeHtml(job.createdAt || '-')}</strong> | 🛡️ Warranty Date: <strong>${escapeHtml(job.warrantyDate || 'N/A')}</strong></div>
+                <div>🛠️ Labor Charge: <strong>${formatCurrency(laborVal)}</strong> | 📦 Parts Total: <strong>${formatCurrency(partsSum)}</strong></div>
+                <div>💰 Total Bill: <strong>${formatCurrency(job.totalAmount || 0)}</strong> | 💳 Advance Paid: <strong>${formatCurrency(job.advanceAmount || 0)}</strong> | Balance: <strong style="color:${balance > 0 ? '#d97706' : '#16a34a'};">${formatCurrency(balance)}</strong></div>
+            `;
+        }
+
+        const intakeNoteEl = getEl('custIntakeNote');
+        const intakeMediaEl = getEl('custIntakeMedia');
+        if (intakeNoteEl) intakeNoteEl.textContent = job.intakeNote || 'No special intake remarks recorded.';
+        if (intakeMediaEl) {
+            intakeMediaEl.innerHTML = (job.intakeMedia || []).map(m =>
+                m.type === 'video' ? `<video src="${m.data}" controls></video>` : `<img src="${m.data}" alt="Intake">`
+            ).join('');
+        }
+
+        const inspEl = getEl('custInspection');
+        if (inspEl) inspEl.textContent = job.inspectionReport || 'Inspection in progress...';
+
+        const repItemsEl = getEl('custReplacedItems');
+        const repPhotosEl = getEl('custReplacedPhotos');
+        if (repItemsEl) {
+            const partsLines = usedParts.map(p => `• ${p.name} (${p.code}) ×${p.qty} — ${formatCurrency(p.total)}`).join('\n');
+            repItemsEl.textContent = [partsLines, job.repairedItems].filter(Boolean).join('\n\n') || 'Details will be updated once parts are fitted.';
+        }
+        if (repPhotosEl) {
+            repPhotosEl.innerHTML = (job.replacedPhotos || []).map(m =>
+                `<img src="${m.data}" alt="Replaced Part">`
+            ).join('');
+        }
+
+        const timelineEl = getEl('custTimeline');
+        if (timelineEl) {
+            const updates = Array.isArray(job.progressUpdates) ? job.progressUpdates : [];
+            timelineEl.innerHTML = updates.length === 0
+                ? `<div style="color:#64748b; font-size:0.88rem;">අලුත් repair updates ඉක්මනින් මෙහි පළ වනු ඇත.</div>`
+                : updates.map(u => `
+                    <div class="timeline-item">
+                        <div class="timeline-date">${escapeHtml(u.date)}</div>
+                        <div style="margin-top:4px; white-space:pre-line;">${escapeHtml(u.note)}</div>
+                        ${u.media?.length ? `<div class="gallery-grid">${u.media.map(m => m.type === 'video' ? `<video src="${m.data}" controls></video>` : `<img src="${m.data}" alt="Progress">`).join('')}</div>` : ''}
                     </div>
-                </div>
-            `).join('')
-        );
+                `).join('');
+        }
     }
 
     // =========================================================================
-    // BACKUP, RESTORE, RESET ALL & RIGHT-CLICK PROTECTION
+    // BACKUP, RESTORE & RESET ALL DATA
     // =========================================================================
     function exportBackup() {
-        const payload = {
+        const backupObj = {
+            app: SHOP_NAME,
             exportedAt: new Date().toISOString(),
             jobs,
             stockItems,
             invoices,
             quotations
         };
-        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+        const blob = new Blob([JSON.stringify(backupObj, null, 2)], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
         a.download = `SS_Hybrid_Care_Backup_${new Date().toISOString().slice(0, 10)}.json`;
-        document.body.appendChild(a);
         a.click();
-        a.remove();
         URL.revokeObjectURL(url);
-        showToast('📥 Full Backup JSON බාගත විය!');
+        showToast('📥 Backup JSON file downloaded!');
     }
 
     function importBackup(event) {
@@ -5327,27 +5752,24 @@
         reader.onload = function(e) {
             try {
                 const parsed = JSON.parse(e.target.result);
-                if (Array.isArray(parsed)) {
-                    jobs = parsed;
-                } else if (parsed && typeof parsed === 'object') {
-                    if (Array.isArray(parsed.jobs)) jobs = parsed.jobs;
-                    if (Array.isArray(parsed.stockItems)) stockItems = parsed.stockItems.map(normalizeStockItem);
-                    if (Array.isArray(parsed.invoices)) invoices = parsed.invoices;
-                    if (Array.isArray(parsed.quotations)) quotations = parsed.quotations;
-                }
+                if (Array.isArray(parsed.jobs)) jobs = parsed.jobs;
+                if (Array.isArray(parsed.stockItems)) stockItems = parsed.stockItems.map(normalizeStockItem);
+                if (Array.isArray(parsed.invoices)) invoices = parsed.invoices;
+                if (Array.isArray(parsed.quotations)) quotations = parsed.quotations;
+
                 persistJobs();
                 persistStock();
                 persistInvoices();
                 persistQuotations();
+                resetJobForm(false);
                 refreshAllUI();
-                showToast('📤 Backup Data Restore විය!');
+                showToast('📤 Backup successfully restored & synced!');
             } catch (err) {
-                showToast('⚠️ Invalid Backup JSON file.');
-            } finally {
-                event.target.value = '';
+                showToast('❌ Invalid backup JSON file.');
             }
         };
         reader.readAsText(file);
+        event.target.value = '';
     }
 
     function openResetModal() {
@@ -5364,51 +5786,64 @@
         invoices = [];
         quotations = [];
         tempJobUsedParts = [];
-        activeHistoryVehicleNormalized = '';
+        tempIntakeMedia = [];
+        tempReplacedPhotos = [];
+        tempProgressMedia = [];
+
+        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem(STOCK_STORAGE_KEY);
+        localStorage.removeItem(INVOICE_STORAGE_KEY);
+        localStorage.removeItem(QUOTATION_STORAGE_KEY);
+
         persistJobs();
         persistStock();
         persistInvoices();
         persistQuotations();
+
         closeResetModal();
         resetJobForm(false);
         resetInvoiceForm(false);
         resetQuotationForm();
         resetStockForm();
         refreshAllUI();
-        showToast('🗑️ සියලුම දත්ත Reset කරන ලදී.');
+        showToast('🗑️ All local & cloud data has been reset.');
     }
 
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
+    // =========================================================================
+    // INITIALIZE APPLICATION ON LOAD
+    // =========================================================================
+    window.addEventListener('online', () => {
+        pullAllViaRest(true);
     });
 
-    window.addEventListener('offline', function() {
-        isFirebaseConnected = false;
-        setCloudBadge('🟠 Offline / Local Only', 'error');
-        updateDiagnosticsModalText('Browser went offline; saving to localStorage.');
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && !isSdkConnected) {
+            pullAllViaRest(true);
+        }
     });
 
-    window.addEventListener('online', function() {
-        setCloudBadge('🔄 Connecting / Reconnecting...', 'connecting');
+    window.addEventListener('DOMContentLoaded', () => {
         initFirebaseRealtime();
-    });
 
-    window.addEventListener('DOMContentLoaded', function() {
-        jobs = jobs.map(j => ({
-            ...j,
-            jobCode: String(j.jobCode || '').trim().toUpperCase() || generateJobCode(),
-            vehicleNo: formatDisplayVehicleNo(j.vehicleNo)
-        }));
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(jobs));
+        const params = new URLSearchParams(window.location.search);
+        const jobParam = params.get('job');
 
-        initFirebaseRealtime();
+        if (jobParam) {
+            getEl('staffView')?.classList.add('hidden');
+            getEl('staffTopActions')?.classList.add('hidden');
+            getEl('customerView')?.classList.remove('hidden');
+            setVal('customerLookupInput', jobParam);
+            renderCustomerTrackingJob(jobParam, jobParam);
+            return;
+        }
+
         resetJobForm(false);
         resetInvoiceForm(false);
         resetQuotationForm();
         resetStockForm();
         refreshAllUI();
-        checkCustomerMode();
     });
 </script>
+
 </body>
 </html>
