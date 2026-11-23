@@ -7,6 +7,7 @@
     <!-- Firebase v8 App + Realtime Database SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
     <style>
         :root {
             --primary: #0f766e;
@@ -1259,7 +1260,7 @@
                                         <span class="pill pill-stock" id="jobPartsSubtotalBadge">Parts (0): Rs. 0</span>
                                     </div>
                                     <div class="form-group" style="margin-bottom:6px;">
-                                        <input type="text" id="jobStockSearch" placeholder="🔍 Search stock by code or part name..." oninput="refreshStockSelectors()">
+                                        <input type="text" id="jobStockSearch" placeholder="🔍 Scan barcode or type Stock Code / Part Name, then Enter..." oninput="refreshStockSelectors()" onkeydown="handleStockBarcodeScan(event)">
                                     </div>
                                     <div class="form-group" style="margin-bottom:6px;">
                                         <select id="jobStockSelect" onchange="handleJobStockPartSelection()">
@@ -1308,7 +1309,11 @@
                                 <div class="form-row-3">
                                     <div class="form-group">
                                         <label for="laborCharge">Labor Charge (Rs.)</label>
-                                        <input type="number" id="laborCharge" min="0" value="0" oninput="recalculateJobBill()">
+                                        <input type="number" id="laborCharge" min="0" value="0" oninput="recalculateJobBill(); updateTechnicianCommission()">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="techCommission">Technician Commission (10% Labor - editable)</label>
+                                        <input type="number" id="techCommission" min="0" step="0.01" value="0" oninput="this.dataset.manual='1'">
                                     </div>
                                     <div class="form-group">
                                         <label for="totalAmount">Total Bill (Rs.)</label>
@@ -1611,8 +1616,8 @@
                             <input type="hidden" id="editStockId">
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label>Barcode / Stock Code *</label>
-                                    <input type="text" id="stockCode" required oninput="updateLiveBarcodePreview()" style="font-weight:800; color:#0f766e;">
+                                    <label>Barcode / Stock Code * (Reader scan හෝ manual type)</label>
+                                    <input type="text" id="stockCode" required autocomplete="off" oninput="this.value=this.value.toUpperCase(); updateLiveBarcodePreview()" style="font-weight:800; color:#0f766e;">
                                 </div>
                                 <div class="form-group">
                                     <label>Category</label>
@@ -2907,6 +2912,27 @@
         getEl('jobStockSelect')?.focus();
     }
 
+    function handleStockBarcodeScan(event) {
+        if (!event || event.key !== 'Enter') return;
+        event.preventDefault();
+        const scanned = String(getVal('jobStockSearch', '') || '').trim().toUpperCase();
+        if (!scanned) return;
+        const found = stockItems.find(s => String(s.code || '').trim().toUpperCase() === scanned);
+        if (!found) { showToast('⚠️ මෙම Barcode / Stock Code එකට Stock item එකක් හමු නොවීය.'); return; }
+        refreshStockSelectors();
+        setVal('jobStockSelect', String(found.id));
+        handleJobStockPartSelection();
+        getEl('jobStockQty')?.focus();
+        showToast(`✅ ${found.name} Barcode scan විය. Qty ඇතුළත් කරන්න.`);
+    }
+
+    function updateTechnicianCommission() {
+        const input = getEl('techCommission');
+        if (!input || input.dataset.manual === '1') return;
+        const labor = Math.max(0, Number(getVal('laborCharge', 0)) || 0);
+        input.value = (labor * 0.10).toFixed(2).replace(/\.00$/, '');
+    }
+
     function refreshStockSelectors() {
         const filterText = (getVal('jobStockSearch', '') || '').trim().toLowerCase();
         const filteredStock = stockItems.filter(s => {
@@ -3019,6 +3045,8 @@
             jobs[jobIdx].usedParts = JSON.parse(JSON.stringify(tempJobUsedParts));
             jobs[jobIdx].repairedItems = String(getVal('repairedItems', '')).trim();
             jobs[jobIdx].laborCharge = labor;
+            jobs[jobIdx].technicianCommission = Math.max(0, Number(getVal('techCommission', labor * 0.10)) || 0);
+            jobs[jobIdx].technicianCommissionManual = getEl('techCommission')?.dataset.manual === '1';
             jobs[jobIdx].totalAmount = total;
             persistJobs();
         }
@@ -3141,6 +3169,8 @@
         setVal('vehicleBrand', 'Toyota');
         setVal('technicianName', '');
         setVal('laborCharge', 0);
+        setVal('techCommission', 0);
+        if (getEl('techCommission')) delete getEl('techCommission').dataset.manual;
         setVal('totalAmount', 0);
         setVal('advanceAmount', 0);
         setVal('jobStockQty', 1);
@@ -3242,6 +3272,8 @@
         setVal('inspectionReport', job.inspectionReport || '');
         setVal('repairedItems', job.repairedItems || '');
         setVal('laborCharge', resolvedLabor);
+        setVal('techCommission', job.technicianCommission != null ? Number(job.technicianCommission) : resolvedLabor * 0.10);
+        if (getEl('techCommission')) getEl('techCommission').dataset.manual = job.technicianCommissionManual ? '1' : '0';
         setVal('totalAmount', savedTotal > 0 ? savedTotal : (resolvedLabor + partsSum));
         setVal('advanceAmount', Number(job.advanceAmount) || 0);
 
@@ -3326,6 +3358,7 @@
             : [];
         const partsSum = getPartsTotalAmount(partsList);
         const laborChargeVal = Math.max(0, parseFloat(getVal('laborCharge', '0')) || 0);
+        const technicianCommissionVal = Math.max(0, parseFloat(getVal('techCommission', String(laborChargeVal * 0.10))) || 0);
         const totalAmountVal = Math.max(0, parseFloat(getVal('totalAmount', '')) || (laborChargeVal + partsSum));
         const advanceAmountVal = Math.max(0, parseFloat(getVal('advanceAmount', '0')) || 0);
 
@@ -3349,6 +3382,8 @@
             usedParts: JSON.parse(JSON.stringify(partsList)),
             repairedItems: String(getVal('repairedItems', '')).trim(),
             laborCharge: laborChargeVal,
+            technicianCommission: technicianCommissionVal,
+            technicianCommissionManual: getEl('techCommission')?.dataset.manual === '1',
             totalAmount: totalAmountVal,
             advanceAmount: advanceAmountVal,
             replacedPhotos: Array.isArray(tempReplacedPhotos) ? [...tempReplacedPhotos] : [],
@@ -3635,6 +3670,7 @@
                             <div><span>🔧 Technician:</span><strong style="color:#1d4ed8;">${escapeHtml(job.technicianName || 'Not Assigned')}</strong></div>
                             <div><span>📞 Phone:</span><span>${escapeHtml(job.phone)}</span></div>
                             <div><span>🛠️ Labor Charge:</span><strong>${formatCurrency(laborVal)}</strong></div>
+                            <div><span>💸 Technician Commission:</span><strong>${formatCurrency(Number(job.technicianCommission != null ? job.technicianCommission : laborVal * 0.10))}</strong></div>
                             <div><span>📦 Parts Total:</span><strong>${formatCurrency(stockPartsTotal)}</strong></div>
                             <div><span>💰 Total Bill:</span><strong>${formatCurrency(job.totalAmount || 0)}</strong></div>
                             <div><span>💳 Advance / Bal:</span><span>Adv: ${Number(job.advanceAmount || 0).toLocaleString()} | <strong style="color:${balance > 0 ? '#d97706' : '#16a34a'};">Bal: ${balance.toLocaleString()}</strong></span></div>
@@ -4092,37 +4128,32 @@
     // STOCK MANAGEMENT & 50mm x 25mm BARCODE ROLL PRINTING
     // =========================================================================
     function generateBarcodeBarsSvg(codeText) {
-        const clean = String(codeText || 'STK-1001').trim() || 'STK-1001';
-        let barsX = 4;
-        const rects = [];
-        for (let i = 0; i < clean.length; i++) {
-            const charCode = clean.charCodeAt(i);
-            const pattern = (charCode % 5) + 1;
-            const w1 = (pattern % 2 === 0) ? 2.2 : 1.2;
-            rects.push(`<rect x="${barsX.toFixed(1)}" y="1" width="${w1.toFixed(1)}" height="24" fill="#000"/>`);
-            barsX += w1 + 1.2;
-            const w2 = ((charCode + i) % 3 === 0) ? 2.0 : 1.0;
-            rects.push(`<rect x="${barsX.toFixed(1)}" y="1" width="${w2.toFixed(1)}" height="24" fill="#000"/>`);
-            barsX += w2 + 1.6;
+        const value = String(codeText || '').trim();
+        if (!value) return '<div style="font-size:7pt;">NO CODE</div>';
+        // Standard CODE128 barcode, readable by common USB/Bluetooth barcode scanners.
+        if (typeof JsBarcode === 'function') {
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            try {
+                JsBarcode(svg, value, { format: 'CODE128', displayValue: false, margin: 4, width: 1.25, height: 34, lineColor: '#000000', background: '#ffffff' });
+                svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', `CODE128 barcode ${value}`);
+                svg.style.width = '100%'; svg.style.maxHeight = '8.5mm'; svg.style.display = 'block';
+                return svg.outerHTML;
+            } catch (err) { console.warn('Barcode generation failed:', err); }
         }
-        const totalW = Math.max(90, barsX + 4);
-        return `<svg viewBox="0 0 ${totalW.toFixed(1)} 26" style="width:100%; max-height:8.5mm; display:block;">${rects.join('')}</svg>`;
+        return `<div style="font-size:6pt; font-weight:700;">${escapeHtml(value)}<br>CODE128 library unavailable</div>`;
     }
 
     function build50x25StickerInnerHtml(code, name, price) {
+        // Price is intentionally omitted from barcode labels.
         const safeCode = escapeHtml(String(code || 'STK-1001').trim());
         const safeName = escapeHtml(String(name || 'Spare Part').trim());
-        const numPrice = Number(price) || 0;
         return `
             <div style="font-size:6.2pt; font-weight:800; line-height:1.1; width:100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${safeName}</div>
-            <div style="width:100%; display:flex; flex-direction:column; align-items:center;">
+            <div style="width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; flex:1;">
                 ${generateBarcodeBarsSvg(safeCode)}
                 <div style="font-size:6.4pt; font-weight:800; letter-spacing:0.6px; line-height:1.1;">${safeCode}</div>
             </div>
-            <div style="font-size:6.5pt; font-weight:800; line-height:1.1; width:100%; display:flex; justify-content:space-between;">
-                <span>${SHOP_NAME}</span>
-                <span>Rs.${numPrice.toLocaleString()}</span>
-            </div>
+            <div style="font-size:6.2pt; font-weight:800; line-height:1.1; width:100%; text-align:center;">${SHOP_NAME}</div>
         `;
     }
 
@@ -4940,6 +4971,7 @@
         let laborIncome = 0;
         let partsSalesRevenue = 0;
         let partsCostTotal = 0;
+        let technicianCommissionTotal = 0;
 
         jobs.forEach(j => {
             const d = String(j.createdAt || '').trim();
@@ -4957,12 +4989,14 @@
 
             const labor = Number(j.laborCharge) || 0;
             const totalRev = Number(j.totalAmount) || (labor + pRev);
-            const netProfit = totalRev - pCost;
+            const technicianCommission = Math.max(0, Number(j.technicianCommission != null ? j.technicianCommission : labor * 0.10) || 0);
+            const netProfit = totalRev - pCost - technicianCommission;
 
             grossSales += totalRev;
             laborIncome += labor;
             partsSalesRevenue += pRev;
             partsCostTotal += pCost;
+            technicianCommissionTotal += technicianCommission;
 
             rows.push({
                 date: d || '-',
@@ -4973,15 +5007,16 @@
                 laborAmount: labor,
                 partsRevenue: pRev,
                 partsCost: pCost,
+                technicianCommission,
                 totalRevenue: totalRev,
                 netProfit
             });
         });
 
-        const netProfit = grossSales - partsCostTotal;
+        const netProfit = grossSales - partsCostTotal - technicianCommissionTotal;
         const marginPct = grossSales > 0 ? (netProfit / grossSales) * 100 : 0;
 
-        return { rows, grossSales, laborIncome, partsSalesRevenue, partsCostTotal, netProfit, marginPct };
+        return { rows, grossSales, laborIncome, partsSalesRevenue, partsCostTotal, technicianCommissionTotal, netProfit, marginPct };
     }
 
     function renderProfitReport() {
@@ -5015,7 +5050,7 @@
                     <div class="stat-emoji">🛠️</div>
                 </div>
                 <div class="stat-box inspect">
-                    <div class="stat-info"><span>Parts Sales / Cost</span><h2 style="font-size:1.1rem;">Rev: ${formatCurrency(data.partsSalesRevenue)}<br><small style="color:#dc2626;">Cost: ${formatCurrency(data.partsCostTotal)}</small></h2></div>
+                    <div class="stat-info"><span>Parts Sales / Cost</span><h2 style="font-size:1.1rem;">Rev: ${formatCurrency(data.partsSalesRevenue)}<br><small style="color:#dc2626;">Cost: ${formatCurrency(data.partsCostTotal)}</small></h2><small style="color:#dc2626;">Tech Commission: ${formatCurrency(data.technicianCommissionTotal)}</small></div>
                     <div class="stat-emoji">📦</div>
                 </div>
                 <div class="stat-box ready">
@@ -5034,13 +5069,14 @@
                             <th>Labor (Rs.)</th>
                             <th>Parts Rev (Rs.)</th>
                             <th>Parts Cost (Rs.)</th>
+                            <th>Tech Commission (Rs.)</th>
                             <th>Total Bill (Rs.)</th>
                             <th>Net Profit (Rs.)</th>
                         </tr>
                     </thead>
                     <tbody>
                         ${data.rows.length === 0
-                            ? `<tr><td colspan="8" style="text-align:center; color:#64748b; padding:24px;">තෝරාගත් දින පරාසය තුළ Job Cards හමු නොවීය.</td></tr>`
+                            ? `<tr><td colspan="9" style="text-align:center; color:#64748b; padding:24px;">තෝරාගත් දින පරාසය තුළ Job Cards හමු නොවීය.</td></tr>`
                             : data.rows.map(r => `
                                 <tr>
                                     <td style="white-space:nowrap;">${escapeHtml(r.date)}</td>
@@ -5049,6 +5085,7 @@
                                     <td>${formatCurrency(r.laborAmount)}</td>
                                     <td>${formatCurrency(r.partsRevenue)}</td>
                                     <td style="color:#dc2626;">${formatCurrency(r.partsCost)}</td>
+                                    <td style="color:#dc2626;">${formatCurrency(r.technicianCommission)}</td>
                                     <td><strong>${formatCurrency(r.totalRevenue)}</strong></td>
                                     <td><strong style="color:${r.netProfit >= 0 ? '#16a34a' : '#dc2626'};">${formatCurrency(r.netProfit)}</strong></td>
                                 </tr>
@@ -5078,7 +5115,7 @@
 
         const fillerCount = Math.max(0, 10 - data.rows.length);
         const fillerHtml = Array.from({ length: fillerCount }).map(() =>
-            `<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>`
+            `<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>`
         ).join('');
 
         const area = getEl('printableArea');
@@ -5122,8 +5159,9 @@
                                     <th style="width:23%;">Vehicle &amp; Customer</th>
                                     <th style="width:13%;">Labor (Rs.)</th>
                                     <th style="width:13%;">Parts Rev</th>
-                                    <th style="width:13%;">Parts Cost</th>
-                                    <th style="width:13%;">Net Profit</th>
+                                    <th style="width:12%;">Parts Cost</th>
+                                    <th style="width:12%;">Tech Commission</th>
+                                    <th style="width:12%;">Net Profit</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -5135,6 +5173,7 @@
                                         <td>${Number(r.laborAmount).toLocaleString()}</td>
                                         <td>${Number(r.partsRevenue).toLocaleString()}</td>
                                         <td>${Number(r.partsCost).toLocaleString()}</td>
+                                        <td>${Number(r.technicianCommission).toLocaleString()}</td>
                                         <td><strong>${Number(r.netProfit).toLocaleString()}</strong></td>
                                     </tr>
                                 `).join('')}
@@ -5145,7 +5184,7 @@
 
                     <div class="a4-bottom-section">
                         <div class="a4-terms-box">
-                            <strong>Accounting Note:</strong> Net Profit is calculated as <em>(Labor Charge Revenue + Spare Parts Revenue) − Spare Parts Cost</em> for all records within the selected reporting period.
+                            <strong>Accounting Note:</strong> Net Profit is calculated as <em>(Labor Charge Revenue + Spare Parts Revenue) − Spare Parts Cost − Technician Commission</em> for all records within the selected reporting period.
                         </div>
                         <div class="a4-signatures">
                             <div class="sig-line">Prepared By (Accounts / Admin)</div>
