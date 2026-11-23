@@ -1968,17 +1968,10 @@
     const FB_CONFIG_STORAGE_KEY = 'ss_hybrid_care_fb_config_v1';
     const FB_URL_STORAGE_KEY = 'ss_hybrid_care_fb_url';
 
- // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyB4by_QNpiA5haKfgNJZahevA_Vm7QfWXs",
-  authDomain: "hybrid-care-876d4.firebaseapp.com",
-  databaseURL: "https://hybrid-care-876d4-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "hybrid-care-876d4",
-  storageBucket: "hybrid-care-876d4.firebasestorage.app",
-  messagingSenderId: "586857493743",
-  appId: "1:586857493743:web:c35effd85329afbb3c571a",
-  measurementId: "G-SWR86Y574K"
-};
+    const DEFAULT_FIREBASE_CONFIG = {
+        databaseURL: 'https://privet-chat-1b7ed-default-rtdb.asia-southeast1.firebasedatabase.app',
+        projectId: 'privet-chat-1b7ed'
+    };
 
     function safeJsonParse(raw, fallback) {
         try {
