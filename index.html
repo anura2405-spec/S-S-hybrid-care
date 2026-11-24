@@ -1833,6 +1833,53 @@
                 </div>
             </section>
 
+<!-- TAB: CREDIT MANAGEMENT -->
+<section id="tab-credit" class="hidden">
+    <div class="card">
+        <div class="card-title">
+            <span>💳 Credit Invoices &amp; Outstanding Balances</span>
+            <input type="text" id="searchCreditInput" placeholder="🔍 Search Customer / Vehicle / Inv No..." style="width:240px;" oninput="renderCreditTab()">
+        </div>
+
+        <div class="stats-bar" style="margin-bottom:14px;">
+            <div class="stat-box inspect">
+                <div class="stat-info"><span>Total Credit Bills</span><h2 id="creditStatCount">0</h2></div>
+                <div class="stat-emoji">🧾</div>
+            </div>
+            <div class="stat-box repair">
+                <div class="stat-info"><span>Total Credit Amount</span><h2 id="creditStatTotal">Rs. 0</h2></div>
+                <div class="stat-emoji">💰</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-info"><span>Paid So Far</span><h2 id="creditStatPaid">Rs. 0</h2></div>
+                <div class="stat-emoji">✅</div>
+            </div>
+            <div class="stat-box ready">
+                <div class="stat-info"><span>Total Balance Due</span><h2 id="creditStatDue" style="color:#dc2626;">Rs. 0</h2></div>
+                <div class="stat-emoji">⏳</div>
+            </div>
+        </div>
+
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Invoice No</th>
+                        <th>Date / Due Date</th>
+                        <th>Customer &amp; Vehicle</th>
+                        <th>Grand Total</th>
+                        <th>Paid</th>
+                        <th>Credit Balance</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="creditTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+            
             <!-- TAB 6: VEHICLE HISTORY REPORT -->
             <section id="tab-history" class="hidden">
                 <div class="card">
