@@ -1314,6 +1314,38 @@
                                 </div>
 
                                 <div class="form-row-3">
+
+<div class="form-row-3">
+    <div class="form-group">
+        <label for="invDiscount">Discount (Rs.)</label>
+        <input type="number" id="invDiscount" min="0" value="0" oninput="recalcDocTotals('inv')">
+    </div>
+    <div class="form-group">
+        <label for="invAdvance">Paid / Advance (Rs.)</label>
+        <input type="number" id="invAdvance" min="0" value="0" oninput="recalcDocTotals('inv')">
+    </div>
+    <div class="form-group">
+        <label for="invPayMethod">Payment Method</label>
+        <select id="invPayMethod" onchange="toggleInvCreditFields()">
+            <option value="Cash">Cash</option>
+            <option value="Bank Transfer (BOC)">Bank Transfer (BOC)</option>
+            <option value="Card">Card</option>
+            <option value="Credit">Credit (ණයට)</option>
+        </select>
+    </div>
+</div>
+
+<div class="form-row" id="invCreditExtraRow" style="display:none; background:#fffbeb; border:1px solid #fcd34d; border-radius:8px; padding:8px; margin-bottom:10px;">
+    <div class="form-group" style="margin-bottom:0;">
+        <label for="invCreditDueDate">Credit Due Date (ගෙවිය යුතු දිනය)</label>
+        <input type="date" id="invCreditDueDate">
+    </div>
+    <div class="form-group" style="margin-bottom:0;">
+        <label for="invCreditNote">Credit Note / විස්තරය</label>
+        <input type="text" id="invCreditNote" placeholder="e.g., 14 days credit / Fleet account">
+    </div>
+</div>
+                                    
                                     <div class="form-group">
                                         <label for="laborCharge">Labor Charge (Rs.)</label>
                                         <input type="number" id="laborCharge" min="0" value="0" oninput="recalculateJobBill(); updateTechnicianCommission()">
